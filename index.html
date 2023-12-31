@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="temp.png">
+</head>
+
+<body>
+    <div id="home" class="section"></div>
+    <div class="navbar">
+        <ul>
+            <li class="name"><a href="#home">NovaX</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="#projects">Services</a></li>
+            <li><a href="#about">About Us</a></li>
+        </ul>
+    </div>
+    <div class="home-hero">
+        <div class="hero-text">
+            <p>Welcome,</p>
+            <div class="line">
+                <p>Thanks for Checking Out NovaX.</p>
+            </div>
+            <div class="line">
+                <p>Please Review Our Services and Open an Account!</p>
+            </div>
+            <div class="button"><a href="{{ url_for('new_acc') }}"><button>Sign up</button></a></div>
+        </div>
+    </div>
+    <div id="projects" class="section">
+        <div class="hero-img">
+            <div class="projects">
+                <p>Our Services</p>
+            </div>
+
+            <div class="projects-container">
+
+                <div class="project" id="deposit">
+                    <h2>Deposit Services</h2>
+                    <p>Deposit services serve as the bedrock of the banking relationship, providing individuals and businesses
+                        a secure haven for their financial resources. In the realm of deposit accounts, savings accounts take
+                        center stage, offering customers the opportunity to accumulate funds while earning interest, thereby
+                        fostering a disciplined approach to saving. This not only facilitates financial stability but also
+                        cultivates a sense of financial responsibility. The safety and reliability inherent in these accounts
+                        make them a fundamental choice for those seeking a long-term store of value. <br><br>Complementing
+                        savings accounts, checking accounts cater to the day-to-day financial needs of customers. These
+                        accounts facilitate seamless transactions, bill payments, and the convenient access to funds required
+                        for the exigencies of modern life. The combination of savings and checking accounts provides a
+                        comprehensive suite of financial tools, enabling individuals to manage their resources efficiently and
+                        with confidence. Through deposit services, banks not only offer financial security but also empower
+                        their clients to navigate the complexities of personal finance effectively.</p>
+                </div>
+
+                <div class="project" id="loan">
+                    <h2>Loan Services</h2>
+                    <p>Loan services offered by banks represent a crucial lifeline, providing individuals and businesses
+                        with access to the capital necessary for significant milestones and endeavors. Personal loans offer
+                        a versatile means of addressing unforeseen expenses or realizing personal aspirations, providing the
+                        financial flexibility needed for life's various chapters. Mortgages, a cornerstone of loan services,
+                        empower individuals and families to achieve the dream of homeownership, fostering community stability
+                        and personal wealth. <br><br>On the business front, loans are instrumental in fueling entrepreneurship
+                        and economic growth. Business loans enable enterprises to expand operations, invest in technology,
+                        and seize opportunities that drive innovation. Whether it's a small business seeking to establish
+                        its presence or a larger corporation aiming for strategic expansion, loan services offered by banks
+                        become instrumental partners in the realization of these ambitions. Loans, therefore, transcend mere
+                        financial transactions, becoming enablers of dreams and contributors to broader economic prosperity.
+                    </p>
+                </div>
+
+                <div class="project" id="investment">
+                    <h2>Investment Services</h2>
+                    <p>Banks, serving as financial architects, offer a comprehensive suite of investment services designed
+                        to build and safeguard wealth. Brokerage accounts provide a gateway to the dynamic world of financial
+                        markets, where customers can buy and sell stocks, bonds, and other securities. This not only allows
+                        for capital appreciation but also encourages individuals to actively participate in the broader
+                        economic landscape. <br><br>Investment services, therefore, extend beyond the realm of mere financial
+                        transactions; they embody a commitment to long-term financial planning. By navigating clients through
+                        the complexities of the financial landscape, banks serve as trusted partners, imparting wisdom,
+                        prudence, and foresight in the pursuit of financial goals. Through these services, individuals not
+                        only accumulate wealth but also gain the confidence to navigate the intricate paths of investment
+                        with a steady hand and informed decision-making.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about" class="section">
+
+        <div class="photo-support">
+            <div class="photo">
+                <p>About Us</p>
+                <img src="images/temp_profile.jpeg" alt="headshot">
+            </div>
+
+            <div class="links">
+                <p><b>Get Support:</b></p>
+
+                <div class="link-item">
+                    <img src="images/mail.png" alt="gmail">
+                    <p><a href="mailto:NovaX@customersupport.com">NovaX@customersupport.com</a></p>
+                </div>
+
+                <div class="link-item">
+                    <img src="images/phone.png" alt="phone">
+                    <p><a href="tel:+800-959-2893">+1 (800)-959-2893</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="photo-text">
+            <div>
+                <p>
+                    Welcome to the world of NovaX Bank, where our commitment to revolutionizing the banking experience is as
+                    unwavering as our dedication to unparalleled customer service. As a beacon of innovation in the financial
+                    landscape, NovaX stands at the intersection of cutting-edge technology, community engagement, and sustainable
+                    banking practices. <br> <br> Embark on a digital odyssey with NovaX, as our state-of-the-art mobile app
+                    becomes your trusted companion in the realm of modern banking. Seamlessly managing your accounts, conducting
+                    transactions, and navigating our robust suite of financial tools is not just efficient; it's empowering.
+                    NovaX's user-centric design ensures that your digital journey is not only intuitive but tailored to meet your
+                    unique needs. Rest assured, our commitment to security is paramount, with advanced measures in place to
+                    safeguard every facet of your financial interactions. <br> <br> However, NovaX is more than just a digital
+                    platform; it's a catalyst for positive change in the communities we serve. Our community engagement initiatives
+                    extend beyond banking transactions to collaborations with local businesses and non-profit organizations. By
+                    strategically supporting local economies and contributing to social causes, NovaX is not just redefining
+                    banking; it's redefining corporate responsibility. <br> <br> Sustainability is ingrained in NovaX's DNA.
+                    Our eco-friendly policies extend beyond digital statements to a holistic approach that reduces our environmental
+                    footprint. As we pioneer the convergence of technology and responsibility, NovaX envisions a future where
+                    banking not only adapts to the changing world but actively contributes to its betterment. NovaX Bank stands as
+                    a testament to a bold vision that transcends the conventional boundaries of banking. In our pursuit of excellence,
+                    we have cultivated an ecosystem where innovation and customer-centricity coalesce seamlessly. Explore the unparalleled
+                    spectrum of financial services that NovaX offers, where each product is meticulously crafted to cater to the diverse
+                    needs of our clientele. From personalized lending solutions to robust investment opportunities, NovaX is your
+                    trusted partner in navigating the complex financial landscape. <br> <br> At the core of NovaX's philosophy
+                    lies an unwavering commitment to transparency and trust. Our About Us page is not just a digital space; it's a
+                    testament to the values that guide our every decision. As a customer-centric institution, NovaX prides itself
+                    on fostering an environment where open communication is not just encouraged but celebrated. We invite you to
+                    delve into the NovaX experience, where every financial journey is underpinned by a foundation of trust,
+                    reliability, and a shared commitment to achieving your financial aspirations. NovaX Bank: Where Vision Meets
+                    Value, and Your Financial Dreams Take Flight. <br> <br> Join us on this transformative journey where every
+                    interaction is an opportunity, every innovation is a leap forward, and every customer is not just a part of
+                    NovaX; they are the heart of our purpose. NovaX Bank: Redefining the Future of Banking, One Customer at a Time.
+                </p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function isElementInViewport(el) {
+                var rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        var offset = targetElement.offsetTop - $('.navbar').height();
+                        $('html, body').stop().animate({
+                            scrollTop: offset
+                        }, 500);
+                    }
+                });
+            });
+
+            function handleVideoPlayback() {
+                var videoSection = $('#bankingProject .video-container');
+
+                if (isElementInViewport(videoSection[0])) {
+                    videoSection.find('video')[0].play();
+                } else {
+                    videoSection.find('video')[0].pause();
+                }
+            }
+
+            $(window).scroll(function () {
+                handleVideoPlayback();
+            });
+
+            handleVideoPlayback();
+        });
+    </script>
+</body>
+
+</html>

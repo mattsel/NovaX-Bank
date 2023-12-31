@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div id="home" class="section"></div>
+    <div class="navbar">
+        <ul>
+            <li class="name"><a href="#home">NovaX</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="#projects">Services</a></li>
+            <li><a href="#about">About Us</a></li>
+        </ul>
+    </div>
+    <h1>Dashboard</h1>
+    <p>Welcome, {{ username }}!</p>
+    <ul>
+        <li><a href="{{ url_for('deposit') }}">Deposit</a></li>
+        <li><a href="{{ url_for('withdraw') }}">Withdraw</a></li>
+        <li><a href="{{ url_for('check_balance') }}">Check Balance</a></li>
+        <li><a href="{{ url_for('wire_transfer') }}">Wire Transfer</a></li>
+    </ul>
+</body>
+</html>
