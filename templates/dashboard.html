@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='templates.css') }}">
 </head>
 <body>
     <div id="home" class="section"></div>
@@ -19,11 +19,11 @@
     </div>
     <h1>Dashboard</h1>
     <p>Welcome, {{ username }}!</p>
-    <ul>
-        <li><a href="{{ url_for('deposit') }}">Deposit</a></li>
-        <li><a href="{{ url_for('withdraw') }}">Withdraw</a></li>
-        <li><a href="{{ url_for('check_balance') }}">Check Balance</a></li>
-        <li><a href="{{ url_for('wire_transfer') }}">Wire Transfer</a></li>
-    </ul>
+        <ul>
+            <li><a href="{{ url_for('deposit') }}">Deposit</a></li>
+            <li><a href="{{ url_for('withdraw') }}">Withdraw</a></li>
+            <li><a href="{{ url_for('check_balance') }}">Check Balance</a></li>
+            <li><a href="{{ url_for('wire_transfer') }}">Wire Transfer</a></li>
+        </ul>
 </body>
 </html>
