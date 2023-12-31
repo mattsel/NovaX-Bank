@@ -179,7 +179,7 @@ body, html {
   }
   
   .link-item p a:hover {
-    color: yellow;
+    color: rgba(255, 255, 0, 0.513);
   }
   .links p b {
     font-size: 30px;
@@ -201,4 +201,8 @@ body, html {
 }
 #investment {
     background-color: rgb(183, 212, 255);
+}
+.link-item img {
+  height: 60px;
+  width:60px;
 }

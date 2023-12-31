@@ -9,21 +9,33 @@
 <body>
     <div id="home" class="section"></div>
     <div class="navbar">
-        <ul>
-            <li class="name"><a href="#home">NovaX</a></li>
-            <li><a href="#home">Home</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="#projects">Services</a></li>
-            <li><a href="#about">About Us</a></li>
-        </ul>
+        <div class="navbar">
+            <ul>
+                <li class="name"><a href="{{ url_for('index') }}">NovaX</a></li>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('index') }}">Logout</a></li>
+                <li><a href="{{ url_for('index') }}">Services</a></li>
+                <li><a href="{{ url_for('index') }}">About Us</a></li>
+            </ul>
+        </div>
     </div>
     <h1>Dashboard</h1>
     <p>Welcome, {{ username }}!</p>
-        <ul>
-            <li><a href="{{ url_for('deposit') }}">Deposit</a></li>
-            <li><a href="{{ url_for('withdraw') }}">Withdraw</a></li>
-            <li><a href="{{ url_for('check_balance') }}">Check Balance</a></li>
-            <li><a href="{{ url_for('wire_transfer') }}">Wire Transfer</a></li>
-        </ul>
+
+    <div class="form-container">
+        <form action="{{ url_for('deposit') }}" method="get">
+            <button type="submit">Deposit</button>
+        </form>
+        <form action="{{ url_for('withdraw') }}" method="get">
+            <button type="submit">Withdraw</button>
+        </form>
+        <form action="{{ url_for('check_balance') }}" method="get">
+            <button type="submit">Check Balance</button>
+        </form>
+        <form action="{{ url_for('wire_transfer') }}" method="get">
+            <button type="submit">Wire Transfer</button>
+        </form>    
+    </div>
+    
 </body>
 </html>

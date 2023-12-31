@@ -1,4 +1,3 @@
-<!-- wire_transfer.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,23 +10,54 @@
     <div id="home" class="section"></div>
     <div class="navbar">
         <ul>
-            <li class="name"><a href="#home">NovaX</a></li>
-            <li><a href="#home">Home</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="#projects">Services</a></li>
-            <li><a href="#about">About Us</a></li>
+            <li class="name"><a href="{{ url_for('index') }}">NovaX</a></li>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('index') }}">Services</a></li>
+            <li><a href="{{ url_for('index') }}">About Us</a></li>
         </ul>
     </div>
     <h1>Wire Transfer</h1>
+
+    <div id="message"></div>
+    <div id="remaining-balance">
+        {% if remaining_balance %}
+            <p>Remaining Balance: ${{ remaining_balance }}</p>
+        {% endif %}
+    </div>
     <form method="post" action="{{ url_for('wire_transfer') }}">
-        <label for="recipient">Recipient:</label>
+        <label for="recipient">Recipient Email:</label>
         <input type="text" name="recipient" required>
         <label for="amount">Amount:</label>
         <input type="number" name="amount" required>
         <button type="submit">Wire Transfer</button>
     </form>
+    <br>
+    <p3>**Test credentials for user to wire transfer to a precreated account**<br></p3>
+    <p3>BUT function does work with proper credentials from a created account</p3>
+    <p4><b>Email:</b> test_wire@gmail.com</p4>  
+
     <a href="{{ url_for('dashboard') }}">
         <button type="button">Back to Dashboard</button>
     </a>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const params = new URLSearchParams(window.location.search);
+        const message = params.get('message');
+        const remainingBalance = params.get('remaining_balance');
+
+        const messageDiv = document.getElementById('message');
+        const remainingBalanceDiv = document.getElementById('remaining-balance');
+
+        if (message) {
+            messageDiv.innerText = message;
+        }
+
+        if (remainingBalance) {
+            remainingBalanceDiv.innerHTML = `<p>Remaining Balance: $${remainingBalance}</p>`;
+        }
+    });
+</script>
 </html>

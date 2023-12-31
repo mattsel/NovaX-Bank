@@ -110,7 +110,7 @@ def new_acc():
     if request.method == 'POST':
         username = request.form.get('username')
         email = request.form.get('email')
-        password = pass_check(request)  # Pass the request to the function
+        password = pass_check(request) 
 
         mycursor.execute("SELECT * FROM information WHERE email = %s", (email,))
         existing_user = mycursor.fetchone()
@@ -124,7 +124,7 @@ def new_acc():
             mycursor.execute(sqlFormula, (username, email, hashed_password, salt, 0))
             mydb.commit()
             session['email'] = email
-            return redirect(url_for('dashboard'))  # Redirect to the dashboard page
+            return redirect(url_for('dashboard')) 
         else:
             return "Please enter a valid password that includes the following:\n- Capital letter\n- Special Character\n- 6 Characters\n- Numerical Value"
 
@@ -158,7 +158,9 @@ def withdraw():
             mycursor.execute("UPDATE information SET balance = balance - %s WHERE email = %s", (withdraw_amount, email))
             mydb.commit()
 
-            return "Withdrawal successful!"
+            remaining_balance = get_balance(email)
+
+            return redirect(url_for('withdraw', message="Withdrawal successful!", remaining_balance=remaining_balance))
 
         return render_template('withdraw.html')
     else:
@@ -178,11 +180,11 @@ def deposit():
             mycursor.execute("UPDATE information SET balance = balance + %s WHERE email = %s", (deposit_amount, email))
             mydb.commit()
 
-            current_balance = get_balance(email)
-            return render_template('deposit.html', current_balance=current_balance)
+            remaining_balance = get_balance(email)
 
-        return render_template('deposit.html')
+            return redirect(url_for('deposit', message="Deposit successful!", remaining_balance=remaining_balance))
 
+        return  render_template('deposit.html')
     else:
         return redirect(url_for('login'))
 
@@ -223,30 +225,37 @@ def dashboard():
         return render_template('dashboard.html', username=get_username(email))
     else:
         return redirect(url_for('login'))
-
+        
 @app.route('/wire_transfer', methods=['GET', 'POST'])
 def wire_transfer():
-    if request.method == 'POST':
-        recipient = request.form.get('recipient')
-        wire_amount = int(request.form.get('amount'))
+    if 'email' in session:
+        email = session['email']
 
-        recipient_exists = check_user_exists(recipient)
+        if request.method == 'POST':
+            recipient = request.form.get('recipient')
+            wire_amount = int(request.form.get('amount'))
 
-        if not recipient_exists:
-            return "Recipient not found. Wire transfer canceled."
+            recipient_exists = check_user_exists(recipient)
 
-        current_balance = get_balance(session['email'])
+            if not recipient_exists:
+                return "Recipient not found. Wire transfer canceled."
 
-        if wire_amount > current_balance:
-            return "Insufficient funds. Wire transfer canceled."
+            current_balance = get_balance(email)
 
-        mycursor.execute("UPDATE information SET balance = balance - %s WHERE email = %s", (wire_amount, session['email']))
-        mycursor.execute("UPDATE information SET balance = balance + %s WHERE email = %s", (wire_amount, recipient))
-        mydb.commit()
+            if wire_amount > current_balance:
+                return "Insufficient funds. Wire transfer canceled."
 
-        return "Wire transfer successful!"
+            mycursor.execute("UPDATE information SET balance = balance - %s WHERE email = %s", (wire_amount, email))
+            mycursor.execute("UPDATE information SET balance = balance + %s WHERE email = %s", (wire_amount, recipient))
+            mydb.commit()
 
-    return render_template('wire_transfer.html')
+            remaining_balance = get_balance(email)
+            return redirect(url_for('wire_transfer', message="Wire transfer successful!", remaining_balance=remaining_balance))
+
+        return render_template('wire_transfer.html')
+    else:
+        return redirect(url_for('login'))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
