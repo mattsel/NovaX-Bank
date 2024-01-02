@@ -46,12 +46,13 @@
             </div>
         </div>
 
+
         <div class="transaction-history">
             <h2>Recent Transactions</h2>
             <ul>
-                <li>Withdrawal - $100</li>
-                <li>Deposit - $500</li>
-                <li>Transfer to Savings - $200</li>
+                {% for transaction in transactions %}
+                    <li>{{ transaction.transaction_type }} - ${{ transaction.amount }} ({{ transaction.timestamp.strftime('%Y-%m-%d %H:%M:%S') }})</li>
+                {% endfor %}
             </ul>
         </div>
     </div>

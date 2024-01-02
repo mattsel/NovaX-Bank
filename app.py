@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__, static_url_path='/static')
-app.secret_key = 'your_secret_key'
+app.secret_key = 'b8f33c292e6f449a0d53e8c376ea6f13'
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -31,8 +31,9 @@ mydb = mysql.connector.connect(
 )
 mycursor = mydb.cursor()
 
-# SQL formula to insert new user information
+# SQL formula to insert new user information, and transaction information
 sqlFormula = "INSERT INTO information (username, email, password, salt, balance) VALUES (%s, %s, %s, %s, %s)"
+transactionFormula = "INSERT INTO transactions (user_email, transaction_type, amount) VALUES (%s, %s, %s)"
 
 def get_balance(email):
     mycursor.execute("SELECT balance FROM information WHERE email = %s", (email,))
@@ -158,6 +159,9 @@ def withdraw():
             mycursor.execute("UPDATE information SET balance = balance - %s WHERE email = %s", (withdraw_amount, email))
             mydb.commit()
 
+            mycursor.execute("INSERT INTO transactions (user_email, transaction_type, amount) VALUES (%s, %s, %s)", (email, 'Withdraw', withdraw_amount))
+            mydb.commit()
+
             remaining_balance = get_balance(email)
 
             return redirect(url_for('withdraw', message="Withdrawal successful!", remaining_balance=remaining_balance))
@@ -178,6 +182,9 @@ def deposit():
                 return "Invalid deposit amount. Please enter a positive value."
 
             mycursor.execute("UPDATE information SET balance = balance + %s WHERE email = %s", (deposit_amount, email))
+            mydb.commit()
+
+            mycursor.execute("INSERT INTO transactions (user_email, transaction_type, amount) VALUES (%s, %s, %s)", (email, 'Deposit', deposit_amount))
             mydb.commit()
 
             remaining_balance = get_balance(email)
@@ -224,7 +231,12 @@ def dashboard():
 
         username = get_username(email)
         current_balance = get_balance(email)
-        return render_template('dashboard.html', username=username, current_balance=current_balance)
+
+        mycursor.execute("SELECT * FROM transactions WHERE user_email = %s ORDER BY timestamp DESC LIMIT 5", (email,))
+        transactions = mycursor.fetchall()
+        transactions = [{'transaction_type': row[3], 'amount': row[2], 'timestamp': row[4]} for row in transactions]
+
+        return render_template('dashboard.html', username=username, current_balance=current_balance, transactions=transactions)
     else:
         return redirect(url_for('login'))
         
@@ -249,6 +261,9 @@ def wire_transfer():
 
             mycursor.execute("UPDATE information SET balance = balance - %s WHERE email = %s", (wire_amount, email))
             mycursor.execute("UPDATE information SET balance = balance + %s WHERE email = %s", (wire_amount, recipient))
+            mydb.commit()
+
+            mycursor.execute("INSERT INTO transactions (user_email, transaction_type, amount) VALUES (%s, %s, %s)", (email, 'Wire Transfer', wire_amount))
             mydb.commit()
 
             remaining_balance = get_balance(email)
