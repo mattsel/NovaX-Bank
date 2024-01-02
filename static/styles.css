@@ -170,31 +170,6 @@ body, html {
     width: 17%;
 }
   
-  .link-item {
-    display: flex;
-    align-items: center;
-  }
-  
-  .link-item img {
-    width: 70px;
-    margin-right: 10px;
-  }
-  
-  .link-item p a {
-    margin: 0;
-    font-size: 20px;
-    color: black;
-  }
-  
-  .link-item p a:hover {
-    color: rgba(255, 255, 0, 0.513);
-  }
-  .links p b {
-    font-size: 30px;
-    margin-left: 60px;
-    text-decoration: underline;
-  }
-  
   .section {
     margin-top: 60px;
   }
@@ -221,7 +196,4 @@ body, html {
   margin-left: 700px;
   margin-bottom: 100px;
   margin-top: 0;
-}
-.section {
-  margin-top: 0; 
 }

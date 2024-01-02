@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaX | Dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
     <link rel="stylesheet" href="test.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,8 +26,8 @@
         <div class="account-summary">
 
             <div class="account">
-                <h2>Account:</h2>
-                <p>Current Balance: ${{ current_balance }}</p>
+                <h2>Current Balance:</h2>
+                <p>${{ current_balance }}</p>
             </div>
 
             <div class="account">
