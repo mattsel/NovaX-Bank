@@ -1,17 +1,29 @@
-<!-- login.html -->
+<!-- Login Form -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Meta tags for character set, compatibility, and viewport -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page Title -->
     <title>NovaX | Login</title>
+
+    <!-- Link to External Stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='templates.css') }}">
+    <link rel="stylesheet" href="../static/templates.css">
+
+    <!-- Link to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <!-- Navigation Bar Section -->
     <div id="home" class="section"></div>
     <div class="navbar">
         <ul>
@@ -22,20 +34,32 @@
             <li><a href="{{ url_for('index') }}">About Us</a></li>
         </ul>
     </div>
+
+    <!-- Login Form Section -->
     <h1 class="login-heading">Login</h1>
     <form method="post" action="{{ url_for('login') }}">
+        <!-- Email Input -->
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
         <br>
+
+        <!-- Password Input -->
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
         <br>
+
+        <!-- Submit Button -->
         <input type="submit" value="Login">
     </form>
+
+    <!-- Test Credentials Section -->
     <p3>**Test credentials for users who do not create an account**<br></p3>
     <p4><b>Email:</b> test_user@gmail.com <b>Password:</b> Test_user123</p4>
+
+    <!-- Display Error Message Section -->
     {% if error_message %}
         <p style="color: red;">{{ error_message }}</p>
     {% endif %}
 </body>
+
 </html>

@@ -1,10 +1,3 @@
-#Sample Login Credentials
-#test_user@gmail.com
-#Test_user123
-
-#test_wire@gmail.com
-#Test_wire123
-
 from flask import Flask, render_template, request, redirect, url_for, session
 import mysql.connector
 import hashlib
@@ -13,6 +6,13 @@ import random
 import logging
 from dotenv import load_dotenv
 import os
+
+#Sample Login Credentials
+#test_user@gmail.com
+#Test_user123
+
+#test_wire@gmail.com
+#Test_wire123
 
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = 'b8f33c292e6f449a0d53e8c376ea6f13'
@@ -35,19 +35,23 @@ mycursor = mydb.cursor()
 sqlFormula = "INSERT INTO information (username, email, password, salt, balance) VALUES (%s, %s, %s, %s, %s)"
 transactionFormula = "INSERT INTO transactions (user_email, transaction_type, amount) VALUES (%s, %s, %s)"
 
+# Retrieve user balance from the database.
 def get_balance(email):
     mycursor.execute("SELECT balance FROM information WHERE email = %s", (email,))
     return mycursor.fetchone()[0]
 
+# Retrieve username associated with the given email.
 def get_username(email):
     mycursor.execute("SELECT username FROM information WHERE email = %s", (email,))
     return mycursor.fetchone()[0]
 
+# Check if a user with the given email exists in the database.
 def check_user_exists(email):
     mycursor.execute("SELECT COUNT(*) FROM information WHERE email = %s", (email,))
     count = mycursor.fetchone()[0]
     return count > 0
 
+# Check if the password and confirm password match.
 def pass_check(request):
     password = request.form.get('password')
     conf_password = request.form.get('confirm_password')
@@ -56,32 +60,40 @@ def pass_check(request):
     else:
         return password
 
+# Check if the password meets the minimum length requirement.
 def pass_length(password):
     return len(password) > 6
 
+# Check if the password contains at least one uppercase letter.
 def pass_capital(password):
     return any(char.isupper() for char in password)
 
+# Check if the password contains at least one special character.
 def pass_special(password):
     special = "!@#$%^&*()-+?_=,<>/."
     return any(char in special for char in password)
 
+# Check if the password contains at least one numerical digit.
 def pass_numerical(password):
     numerical = "0123456789"
     return any(char in numerical for char in password)
 
+# Generate a random salt for password hashing.
 def generate_salt():
     return str(random.randint(100000, 999999))
 
+# Hash the password using SHA-256 algorithm and the provided salt.
 def hash_password(password, salt):
     hashed_password = hashlib.sha256((password + str(salt)).encode()).hexdigest()
     return hashed_password
 
 @app.route('/')
+# Render the index page.
 def index():
     return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
+# Handle user login by checking if an account exists. 
 def login():
     error_message = None
     if request.method == 'POST':
@@ -107,6 +119,7 @@ def login():
     return render_template('login.html', error_message=error_message)
 
 @app.route('/new_acc', methods=['GET', 'POST'])
+# Creates an account and stores the users informations securly to the data base while via salted password.
 def new_acc():
     if request.method == 'POST':
         username = request.form.get('username')
@@ -131,16 +144,9 @@ def new_acc():
 
     return render_template('new_acc.html')
 
-@app.route('/check_balance', methods=['GET'])
-def check_balance():
-    if 'email' in session:
-        email = session['email']
-        current_balance = get_balance(email)
-        return render_template('check_balance.html', current_balance=current_balance)
-
-    return redirect(url_for('login'))
-
 @app.route('/withdraw', methods=['GET', 'POST'])
+# Sorts data base and withdraws amount from users email address as an id. If amount in account is less than withdraw, error message displays, else subtracts request from stored. 
+# Tracks the transaction type along with amount to be later disaplyed on the dashboard screen a log of transactions. 
 def withdraw():
     if 'email' in session:
         email = session['email']
@@ -171,6 +177,8 @@ def withdraw():
         return redirect(url_for('login'))
 
 @app.route('/deposit', methods=['GET', 'POST'])
+# Sorts data and adds funds to the user by identifiying their email address in the database. If an invalid number is displayed it will handle error accordingly. 
+# Tracks the transaction type along with amount to be later disaplyed on the dashboard screen a log of transactions. 
 def deposit():
     if 'email' in session:
         email = session['email']
@@ -196,6 +204,7 @@ def deposit():
         return redirect(url_for('login'))
 
 @app.route('/dashboard', methods=['GET', 'POST'])
+# Allows user to choose their transaction method. This also keeps an updated display of users balance on screen. Error handling for invalid request or inputs. 
 def dashboard():
     if 'email' in session:
         email = session['email']
@@ -241,6 +250,8 @@ def dashboard():
         return redirect(url_for('login'))
         
 @app.route('/wire_transfer', methods=['GET', 'POST'])
+# Sorts data for senders email and withdraws money from the users account. Sender is prompted to enter the recipients email which will be used to send the withdrawn money to.
+# Tracks the transaction type along with amount to be later disaplyed on the dashboard screen a log of transactions. 
 def wire_transfer():
     if 'email' in session:
         email = session['email']

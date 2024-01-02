@@ -1,16 +1,28 @@
+<!-- User Dashboard Page -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Meta tags for character set and viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page Title -->
     <title>NovaX | Dashboard</title>
+
+    <!-- Link to External Stylesheets -->
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
-    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="../static/dashboard.css">
+
+    <!-- Link to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <!-- Navigation Bar Section -->
     <div class="navbar">
         <ul>
             <li class="name"><a href="{{ url_for('index') }}">NovaX</a></li>
@@ -21,10 +33,12 @@
         </ul>
     </div>
 
+    <!-- Dashboard Content Section -->
     <div class="dashboard">
         <h1>Welcome, {{ username }}!</h1>
-        <div class="account-summary">
 
+        <!-- Account Summary Section -->
+        <div class="account-summary">
             <div class="account">
                 <h2>Account:</h2>
                 <p>Current Balance: ${{ current_balance }}</p>
@@ -33,12 +47,17 @@
             <div class="account">
                 <h2>Choose Your Transaction Type:</h2>
                 <div class="form-container">
+                    <!-- Deposit Button -->
                     <form action="{{ url_for('deposit') }}" method="get">
                         <button type="submit">Deposit</button>
                     </form>
+
+                    <!-- Withdraw Button -->
                     <form action="{{ url_for('withdraw') }}" method="get">
                         <button type="submit">Withdraw</button>
                     </form>
+
+                    <!-- Wire Transfer Button -->
                     <form action="{{ url_for('wire_transfer') }}" method="get">
                         <button type="submit">Wire Transfer</button>
                     </form>
@@ -46,10 +65,11 @@
             </div>
         </div>
 
-
+        <!-- Transaction History Section -->
         <div class="transaction-history">
             <h2>Recent Transactions</h2>
             <ul>
+                <!-- Display recent transactions using a loop -->
                 {% for transaction in transactions %}
                     <li>{{ transaction.transaction_type }} - ${{ transaction.amount }} ({{ transaction.timestamp.strftime('%Y-%m-%d %H:%M:%S') }})</li>
                 {% endfor %}
@@ -57,4 +77,5 @@
         </div>
     </div>
 </body>
+
 </html>

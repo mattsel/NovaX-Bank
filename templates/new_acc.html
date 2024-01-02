@@ -1,15 +1,28 @@
+<!-- New User Registration Form -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Meta tags for character set and viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page Title -->
     <title>NovaX | New User</title>
+
+    <!-- Link to External Stylesheets -->
     <link rel="stylesheet" href="{{ url_for('static', filename='templates.css') }}">
+    <link rel="stylesheet" href="../static/templates.css">
+
+    <!-- Link to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <!-- Sections and Navigation Bar -->
     <div id="home" class="section"></div>
     <div class="navbar">
         <ul>
@@ -21,23 +34,33 @@
         </ul>
     </div>
 
+    <!-- New User Registration Form Section -->
     <h1 class="newacc-heading">Create a New Account</h1>
     <form method="post" action="{{ url_for('new_acc') }}">
+        <!-- Username Input -->
         <label for="username">Username:</label>
         <input type="text" name="username" required>
 
+        <!-- Email Input -->
         <label for="email">Email:</label>
         <input type="email" name="email" required>
 
+        <!-- Password Input -->
         <label for="password">Password:</label>
         <input type="password" name="password" required>
 
+        <!-- Confirm Password Input -->
         <label for="confirm_password">Confirm Password:</label>
         <input type="password" name="confirm_password" required>
 
+        <!-- Submit Button -->
         <button type="submit">Create Account</button>
     </form>
+
+    <!-- Additional Information -->
     <br>
     <p3>**Can create an account or use pre-existing credentials located under login tab**</p3>
 </body>
+
 </html>
+

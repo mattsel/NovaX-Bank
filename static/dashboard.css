@@ -1,8 +1,11 @@
+/* Resetting default body styles */
 body {
     margin: 0;
     padding: 0;
     font-family: 'League Spartan', sans-serif;
 }
+
+/* Navbar Styles */
 .navbar {
     position: fixed;
     top: 0;
@@ -10,39 +13,42 @@ body {
     z-index: 1000;
     justify-content: flex-end;
     width: 100%;
-  }
-  
- .navbar ul {
+}
+
+.navbar ul {
     list-style-type: none;
     margin: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-  }
-  .navbar ul li {
+}
+
+.navbar ul li {
     margin-right: 15px;
     color: white;
-  }
-  
-  .navbar ul li.name {
+}
+
+.navbar ul li.name {
     margin-right: auto;
     padding-left: 15px;
     letter-spacing: 3px;
     font-size: 18px;
-  }
-  
-  .navbar ul li a {
+}
+
+.navbar ul li a {
     text-decoration: none;
     color: white;
     padding: 10px;
     display: inline-block;
-  }
+}
+
 .navbar ul li a:hover {
     text-decoration: underline;
     color: yellow;
-  }
+}
 
+/* Dashboard Styles */
 .dashboard {
     padding: 20px;
     margin-top: 50px;
@@ -52,6 +58,7 @@ body {
     color: #000000;
 }
 
+/* Account Summary Styles */
 .account-summary {
     display: flex;
     justify-content: space-between;
@@ -66,6 +73,7 @@ body {
     margin-right: 20px;
 }
 
+/* Transaction History Styles */
 .transaction-history {
     margin-top: 20px;
 }
@@ -84,6 +92,7 @@ body {
     padding: 10px 0;
 }
 
+/* Common Link Styles */
 a {
     display: inline-block;
     padding: 10px 20px;
@@ -93,6 +102,7 @@ a {
     transition: background-color 0.3s ease; 
 }
 
+/* Form Styles */
 form {
     width: 300px; 
     text-align: center; 
@@ -111,6 +121,7 @@ input {
     box-sizing: border-box; 
 }
 
+/* Submit Button Styles */
 input[type="submit"] {
     color: #fff; 
     border: none;
@@ -127,10 +138,13 @@ input[type="submit"]:hover {
     background-color: #297fb9ac; 
 }
 
+/* Error Message Styles */
 p.error-message {
     color: red;
     margin-top: 10px; 
 }
+
+/* General Button Styles */
 button {
     background-color: #3498db; 
     color: #fff; 
@@ -142,18 +156,23 @@ button {
     margin-top: 20px;
     width: 160px;
 }
+
 button:hover {
     background-color: #297fb9ac; 
 }
+
+/* Form Container Styles */
 .form-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
 }
+
 .form-container form {
     width: 30%;
 }
+
 .form-container button {
     width: 100%;
 }
