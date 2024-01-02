@@ -28,6 +28,8 @@
 <body>
     <!-- Navigation Bar Section -->
     <div id="home" class="section"></div>
+    <br>
+    <br>
     <div class="navbar">
         <ul>
             <li class="name"><a href="#home">NovaX</a></li>
@@ -79,14 +81,30 @@
                         center stage, offering customers the opportunity to accumulate funds while earning interest, thereby
                         fostering a disciplined approach to saving. This not only facilitates financial stability but also
                         cultivates a sense of financial responsibility. The safety and reliability inherent in these accounts
-                        make them a fundamental choice for those seeking a long-term store of value...</p>
+                        make them a fundamental choice for those seeking a long-term store of value. <br><br>Complementing
+                        savings accounts, checking accounts cater to the day-to-day financial needs of customers. These
+                        accounts facilitate seamless transactions, bill payments, and the convenient access to funds required
+                        for the exigencies of modern life. The combination of savings and checking accounts provides a
+                        comprehensive suite of financial tools, enabling individuals to manage their resources efficiently and
+                        with confidence. Through deposit services, banks not only offer financial security but also empower
+                        their clients to navigate the complexities of personal finance effectively.</p>
                 </div>
 
                 <!-- Wire Transfer Project -->
                 <div class="project" id="loan">
                     <h2>Wire Transfers</h2>
                     <!-- Wire Transfer Services Description -->
-                    <p>Wire transfer services, a pivotal component of modern banking, play a vital role in facilitating seamless financial transactions across the globe. These services offer individuals and businesses a secure and efficient method for transferring funds domestically and internationally...</p>
+                    <p>Wire transfer services, a pivotal component of modern banking, play a vital role in facilitating seamless 
+                        financial transactions across the globe. These services offer individuals and businesses a secure and efficient 
+                        method for transferring funds domestically and internationally. The efficiency and speed of wire transfers contribute 
+                        to the agility of businesses, enabling them to navigate the complexities of the global marketplace.<br><br>
+                        In the realm of personal finance, wire transfers provide a swift and reliable way to send money to family members, 
+                        make investments, or handle urgent financial matters. This expeditious mode of transaction ensures that individuals 
+                        can meet their financial obligations promptly, irrespective of geographical boundaries. Additionally, wire transfers 
+                        are often employed for significant transactions, such as purchasing real estate or managing investments, where the immediacy 
+                        and security of funds are paramount.<br><br>
+
+
                 </div>
 
                 <!-- Investment Project -->
@@ -97,7 +115,13 @@
                         to build and safeguard wealth. Brokerage accounts provide a gateway to the dynamic world of financial
                         markets, where customers can buy and sell stocks, bonds, and other securities. This not only allows
                         for capital appreciation but also encourages individuals to actively participate in the broader
-                        economic landscape...</p>
+                        economic landscape. <br><br>Investment services, therefore, extend beyond the realm of mere financial
+                        transactions; they embody a commitment to long-term financial planning. By navigating clients through
+                        the complexities of the financial landscape, banks serve as trusted partners, imparting wisdom,
+                        prudence, and foresight in the pursuit of financial goals. Through these services, individuals not
+                        only accumulate wealth but also gain the confidence to navigate the intricate paths of investment
+                        with a steady hand and informed decision-making.
+                    </p>
                 </div>
             </div>
         </div>
@@ -128,7 +152,15 @@
                         platform; it's a catalyst for positive change in the communities we serve. Our community engagement initiatives
                         extend beyond banking transactions to collaborations with local businesses and non-profit organizations. By
                         strategically supporting local economies and contributing to social causes, NovaX is not just redefining
-                        banking; it's redefining corporate responsibility. <br> <br> Sustainability is ingrained in NovaX's DNA...
+                        banking; it's redefining corporate responsibility. <br> <br> Sustainability is ingrained in NovaX's DNA.
+                        Our eco-friendly policies extend beyond digital statements to a holistic approach that reduces our environmental
+                        footprint. As we pioneer the convergence of technology and responsibility, NovaX envisions a future where
+                        banking not only adapts to the changing world but actively contributes to its betterment. NovaX Bank stands as
+                        a testament to a bold vision that transcends the conventional boundaries of banking. In our pursuit of excellence,
+                        we have cultivated an ecosystem where innovation and customer-centricity coalesce seamlessly. Explore the unparalleled
+                        spectrum of financial services that NovaX offers, where each product is meticulously crafted to cater to the diverse
+                        needs of our clientele. From personalized lending solutions to robust investment opportunities, NovaX is your
+                        trusted partner in navigating the complex financial landscape. <br> 
                     </p>
                 </div>
             </div>
@@ -143,32 +175,25 @@
 <!-- Video Player Script -->
 
 <script>
-    // Get reference to the video player and video section elements
     var video = document.getElementById('video-player');
     var videoSection = document.getElementById('video-section');
 
-    // Options for IntersectionObserver
     var options = {
         root: null,
         rootMargin: '0px',
         threshold: 0.3 
     };
 
-    // Create IntersectionObserver with callback function
     var observer = new IntersectionObserver(callback, options);
 
-    // Callback function for IntersectionObserver
     function callback(entries, observer) {
         entries.forEach(entry => {
-            // Check if video section is intersecting with the viewport
             if (entry.isIntersecting) {
-                // Play the video if it is paused
                 if (video.paused) {
                     video.play();
-                    video.playbackRate = 1.5; // Set playback rate to 1.5x for faster playback
+                    video.playbackRate = 1.5; 
                 }
             } else {
-                // Pause the video if it is not in the viewport
                 if (!video.paused) {
                     video.pause();
                     saveCurrentTime();
@@ -177,23 +202,19 @@
         });
     }
 
-    // Function to save the current time of the video to local storage
     function saveCurrentTime() {
+        
         localStorage.setItem('videoCurrentTime', video.currentTime);
     }
 
-    // Function to retrieve the saved current time from local storage
     function retrieveCurrentTime() {
+       
         var currentTime = localStorage.getItem('videoCurrentTime');
-        // Return the current time if it exists, otherwise return 0
         return currentTime ? parseFloat(currentTime) : 0;
     }
 
-    // Set the current time of the video to the retrieved value from local storage
     video.currentTime = retrieveCurrentTime(); 
     
-    // Observe the video section for intersection changes
     observer.observe(videoSection);
 </script>
-
 </html>
