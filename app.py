@@ -222,7 +222,9 @@ def dashboard():
             else:
                 return "Invalid action. Please choose a valid operation."
 
-        return render_template('dashboard.html', username=get_username(email))
+        username = get_username(email)
+        current_balance = get_balance(email)
+        return render_template('dashboard.html', username=username, current_balance=current_balance)
     else:
         return redirect(url_for('login'))
         

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='templates.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
 </head>
 <body>
     <div id="home" class="section"></div>
@@ -19,22 +19,22 @@
             </ul>
         </div>
     </div>
-    <h1>Dashboard</h1>
-    <p>Welcome, {{ username }}!</p>
+    <div class="left-box">
+        <h1>Dashboard</h1>
+        <p>Welcome, {{ username }}!</p>
 
-    <div class="form-container">
-        <form action="{{ url_for('deposit') }}" method="get">
-            <button type="submit">Deposit</button>
-        </form>
-        <form action="{{ url_for('withdraw') }}" method="get">
-            <button type="submit">Withdraw</button>
-        </form>
-        <form action="{{ url_for('check_balance') }}" method="get">
-            <button type="submit">Check Balance</button>
-        </form>
-        <form action="{{ url_for('wire_transfer') }}" method="get">
-            <button type="submit">Wire Transfer</button>
-        </form>    
+        <div class="form-container">
+            <p>Current balance: ${{ current_balance }}</p>
+            <form action="{{ url_for('deposit') }}" method="get">
+                <button type="submit">Deposit</button>
+            </form>
+            <form action="{{ url_for('withdraw') }}" method="get">
+                <button type="submit">Withdraw</button>
+            </form>
+            <form action="{{ url_for('wire_transfer') }}" method="get">
+                <button type="submit">Wire Transfer</button>
+            </form>
+        </div>
     </div>
     
 </body>
