@@ -32,9 +32,9 @@
         <ul>
             <li class="name"><a href="#home">NovaX</a></li>
             <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Services</a></li>
             <li><a href="{{url_for('credit') }}">Credit Card</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="#projects">Services</a></li>
             <li><a href="#about">About Us</a></li>
         </ul>
     </div>
@@ -71,26 +71,25 @@
             </div>
 
             <div class="projects-container">
-                <!-- Deposit Project -->
-                <div class="project" id="deposit">
-                    <h2>Deposit Services</h2>
-                    <!-- Deposit Services Description -->
-                    <p>Deposit services serve as the bedrock of the banking relationship, providing individuals and businesses
-                        a secure haven for their financial resources. In the realm of deposit accounts, savings accounts take
-                        center stage, offering customers the opportunity to accumulate funds while earning interest, thereby
-                        fostering a disciplined approach to saving. This not only facilitates financial stability but also
-                        cultivates a sense of financial responsibility. The safety and reliability inherent in these accounts
-                        make them a fundamental choice for those seeking a long-term store of value. <br><br>Complementing
-                        savings accounts, checking accounts cater to the day-to-day financial needs of customers. These
-                        accounts facilitate seamless transactions, bill payments, and the convenient access to funds required
-                        for the exigencies of modern life. The combination of savings and checking accounts provides a
-                        comprehensive suite of financial tools, enabling individuals to manage their resources efficiently and
-                        with confidence. Through deposit services, banks not only offer financial security but also empower
-                        their clients to navigate the complexities of personal finance effectively.</p>
+                <!-- Credit Card Project -->
+                <div class="project" id="credit">
+                    <h2>Credit Card</h2>
+                    <!-- Credit Card Description -->
+                    <p>NovaX Credit Card is a distinguished financial services provider committed to delivering cutting-edge and reliable credit card 
+                        solutions to its clientele. Renowned for its unwavering commitment to transparency, security, and technological innovation, NovaX sets 
+                        itself apart in the industry. The credit cards offered by NovaX cater to diverse consumer needs, featuring flexible payment options, competitive 
+                        interest rates, and an array of rewards and benefits tailored to enhance the financial well-being of its cardholders.<br><br>
+
+                        NovaX takes pride in its user-friendly interfaces and robust security measures, ensuring customers can confidently manage their finances while 
+                        enjoying the convenience of a NovaX credit card. Whether simplifying everyday transactions or accessing exclusive perks, NovaX is dedicated to 
+                        elevating the overall financial experience for its cardholders. Positioned as a trusted partner, NovaX Credit Card aims to be at the forefront of the
+                         industry, providing a reliable and rewarding credit card solution for individuals seeking financial empowerment.
+                        </p>
+                    <div class="button-project"><a href="{{ url_for('credit') }}"><button>Try Me</button></a></div>
                 </div>
 
                 <!-- Wire Transfer Project -->
-                <div class="project" id="loan">
+                <div class="project" id="wire">
                     <h2>Wire Transfers</h2>
                     <!-- Wire Transfer Services Description -->
                     <p>Wire transfer services, a pivotal component of modern banking, play a vital role in facilitating seamless 
@@ -102,25 +101,26 @@
                         can meet their financial obligations promptly, irrespective of geographical boundaries. Additionally, wire transfers 
                         are often employed for significant transactions, such as purchasing real estate or managing investments, where the immediacy 
                         and security of funds are paramount.<br><br>
-
-
+                        <div class="button-project"><a href="{{ url_for('login') }}"><button>Try Me</button></a></div>
                 </div>
 
-                <!-- Investment Project -->
-                <div class="project" id="investment">
-                    <h2>Investment Services</h2>
-                    <!-- Investment Services Description -->
-                    <p>Banks, serving as financial architects, offer a comprehensive suite of investment services designed
-                        to build and safeguard wealth. Brokerage accounts provide a gateway to the dynamic world of financial
-                        markets, where customers can buy and sell stocks, bonds, and other securities. This not only allows
-                        for capital appreciation but also encourages individuals to actively participate in the broader
-                        economic landscape. <br><br>Investment services, therefore, extend beyond the realm of mere financial
-                        transactions; they embody a commitment to long-term financial planning. By navigating clients through
-                        the complexities of the financial landscape, banks serve as trusted partners, imparting wisdom,
-                        prudence, and foresight in the pursuit of financial goals. Through these services, individuals not
-                        only accumulate wealth but also gain the confidence to navigate the intricate paths of investment
-                        with a steady hand and informed decision-making.
-                    </p>
+                    <div class="project" id="transaction">
+                        <h2>Transaction Services</h2>
+                        <!-- Transaction Services Description -->
+                        <p>Deposit services serve as the bedrock of the banking relationship, providing individuals and businesses
+                            a secure haven for their financial resources. In the realm of deposit accounts, savings accounts take
+                            center stage, offering customers the opportunity to accumulate funds while earning interest, thereby
+                            fostering a disciplined approach to saving. This not only facilitates financial stability but also
+                            cultivates a sense of financial responsibility. The safety and reliability inherent in these accounts
+                            make them a fundamental choice for those seeking a long-term store of value. <br><br>Complementing
+                            savings accounts, checking accounts cater to the day-to-day financial needs of customers. These
+                            accounts facilitate seamless transactions, bill payments, and the convenient access to funds required
+                            for the exigencies of modern life. The combination of savings and checking accounts provides a
+                            comprehensive suite of financial tools, enabling individuals to manage their resources efficiently and
+                            with confidence. Through deposit services, banks not only offer financial security but also empower
+                            their clients to navigate the complexities of personal finance effectively.</p>
+                            <div class="button-project"><a href="{{ url_for('login') }}"><button>Try Me</button></a></div>
+                    </div>
                 </div>
             </div>
         </div>

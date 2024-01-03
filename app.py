@@ -331,7 +331,7 @@ def dashboard():
         return redirect(url_for('login'))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
 
 # Close database connection on application exit
 @app.teardown_appcontext
