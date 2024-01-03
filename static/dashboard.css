@@ -176,3 +176,12 @@ button:hover {
 .form-container button {
     width: 100%;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    background-color: #f1f1f1; /* Set a background color if needed */
+}

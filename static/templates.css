@@ -136,3 +136,12 @@ p3, p4 {
     opacity: 75%;
     line-height: 20px;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    background-color: #f1f1f1; /* Set a background color if needed */
+}
