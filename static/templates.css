@@ -97,15 +97,6 @@ button:hover {
     width: 100%;
   }
   
-  ul {
-    list-style-type: none;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
-  
   ul li {
     margin-right: 15px;
     color: white;

@@ -31,9 +31,10 @@ mydb = mysql.connector.connect(
 )
 mycursor = mydb.cursor()
 
-# SQL formula to insert new user information, and transaction information
+# SQL formula to insert new user information, transaction information, and credit applications
 sqlFormula = "INSERT INTO information (username, email, password, salt, balance) VALUES (%s, %s, %s, %s, %s)"
 transactionFormula = "INSERT INTO transactions (user_email, transaction_type, amount) VALUES (%s, %s, %s)"
+creditcardFormula = "INSERT INTO credit_applications (username, email, password, annual_income) VALUES (%s, %s, %s, %s)"
 
 # Retrieve user balance from the database.
 def get_balance(email):
@@ -144,6 +145,35 @@ def new_acc():
 
     return render_template('new_acc.html')
 
+
+@app.route('/deposit', methods=['GET', 'POST'])
+# Sorts data and adds funds to the user by identifiying their email address in the database. If an invalid number is displayed it will handle error accordingly. 
+# Tracks the transaction type along with amount to be later disaplyed on the dashboard screen a log of transactions. 
+def deposit():
+    if 'email' in session:
+        email = session['email']
+
+        if request.method == 'POST':
+            deposit_amount = int(request.form.get('amount'))
+
+            if deposit_amount <= 0:
+                return "Invalid deposit amount. Please enter a positive value."
+
+            mycursor.execute("UPDATE information SET balance = balance + %s WHERE email = %s", (deposit_amount, email))
+            mydb.commit()
+
+            mycursor.execute("INSERT INTO transactions (user_email, transaction_type, amount) VALUES (%s, %s, %s)", (email, 'Deposit', deposit_amount))
+            mydb.commit()
+
+            remaining_balance = get_balance(email)
+
+            return redirect(url_for('deposit', message="Deposit successful!", remaining_balance=remaining_balance))
+
+        return  render_template('deposit.html')
+    else:
+        return redirect(url_for('login'))
+    
+
 @app.route('/withdraw', methods=['GET', 'POST'])
 # Sorts data base and withdraws amount from users email address as an id. If amount in account is less than withdraw, error message displays, else subtracts request from stored. 
 # Tracks the transaction type along with amount to be later disaplyed on the dashboard screen a log of transactions. 
@@ -175,34 +205,97 @@ def withdraw():
         return render_template('withdraw.html')
     else:
         return redirect(url_for('login'))
-
-@app.route('/deposit', methods=['GET', 'POST'])
-# Sorts data and adds funds to the user by identifiying their email address in the database. If an invalid number is displayed it will handle error accordingly. 
+    
+@app.route('/wire_transfer', methods=['GET', 'POST'])
+# Sorts data for senders email and withdraws money from the users account. Sender is prompted to enter the recipients email which will be used to send the withdrawn money to.
 # Tracks the transaction type along with amount to be later disaplyed on the dashboard screen a log of transactions. 
-def deposit():
+def wire_transfer():
     if 'email' in session:
         email = session['email']
 
         if request.method == 'POST':
-            deposit_amount = int(request.form.get('amount'))
+            recipient = request.form.get('recipient')
+            wire_amount = int(request.form.get('amount'))
 
-            if deposit_amount <= 0:
-                return "Invalid deposit amount. Please enter a positive value."
+            recipient_exists = check_user_exists(recipient)
 
-            mycursor.execute("UPDATE information SET balance = balance + %s WHERE email = %s", (deposit_amount, email))
+            if not recipient_exists:
+                return "Recipient not found. Wire transfer canceled."
+
+            current_balance = get_balance(email)
+
+            if wire_amount > current_balance:
+                return "Insufficient funds. Wire transfer canceled."
+
+            mycursor.execute("UPDATE information SET balance = balance - %s WHERE email = %s", (wire_amount, email))
+            mycursor.execute("UPDATE information SET balance = balance + %s WHERE email = %s", (wire_amount, recipient))
             mydb.commit()
 
-            mycursor.execute("INSERT INTO transactions (user_email, transaction_type, amount) VALUES (%s, %s, %s)", (email, 'Deposit', deposit_amount))
+            mycursor.execute("INSERT INTO transactions (user_email, transaction_type, amount) VALUES (%s, %s, %s)", (email, 'Wire Transfer', wire_amount))
             mydb.commit()
 
             remaining_balance = get_balance(email)
+            return redirect(url_for('wire_transfer', message="Wire transfer successful!", remaining_balance=remaining_balance))
 
-            return redirect(url_for('deposit', message="Deposit successful!", remaining_balance=remaining_balance))
-
-        return  render_template('deposit.html')
+        return render_template('wire_transfer.html')
     else:
         return redirect(url_for('login'))
+    
+@app.route('/credit', methods=['GET', 'POST'])
+# Hosts credit card application and handles data to be stored and determine minimum eligibility.
+def credit_card():
+    if request.method == 'POST':
+        # Get user input for credit card application
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = pass_check(request)
 
+        # Additional form fields for credit card application
+        annual_income = request.form.get('annual_income')
+
+        # Validate annual income (you can add more validation as needed)
+        if not annual_income.isdigit():
+            return "Please enter a valid annual income."
+
+        annual_income = int(annual_income)
+
+        # Check eligibility based on annual income
+        if annual_income >= 35000:
+            # Check if the email already exists in credit_applications table
+            mycursor.execute("SELECT COUNT(*) FROM credit_applications WHERE email = %s", (email,))
+            count = mycursor.fetchone()[0]
+
+            if count > 0:
+                return "An application with this email already exists. Please use a different email."
+
+            # Check if the email already exists in the 'information' table (existing user)
+            if check_user_exists(email):
+                return "An account with this email already exists. Please use a different email."
+
+            # Validate password
+            if pass_length(password) and pass_capital(password) and pass_special(password) and pass_numerical(password):
+                # Generate salt and hash the password
+                salt = generate_salt()
+                hashed_password = hash_password(password, salt)
+
+                # Insert new user information to credentials database
+                mycursor.execute(sqlFormula, (username, email, hashed_password, salt, 0))
+                mydb.commit()
+
+                # Insert separate information into credit card database
+                mycursor.execute(creditcardFormula, (username, email, hashed_password, annual_income))
+                mydb.commit()
+
+                # Redirect to a confirmation page or dashboard
+                return redirect(url_for('dashboard', message="Credit card application submitted!"))
+            else:
+                return "Please enter a valid password."
+
+        else:
+            return "Income does not meet our criteria to be a NovaX Credit Card holder"
+
+    return render_template('credit_card.html')
+            
 @app.route('/dashboard', methods=['GET', 'POST'])
 # Allows user to choose their transaction method. This also keeps an updated display of users balance on screen. Error handling for invalid request or inputs. 
 def dashboard():
@@ -248,42 +341,6 @@ def dashboard():
         return render_template('dashboard.html', username=username, current_balance=current_balance, transactions=transactions)
     else:
         return redirect(url_for('login'))
-        
-@app.route('/wire_transfer', methods=['GET', 'POST'])
-# Sorts data for senders email and withdraws money from the users account. Sender is prompted to enter the recipients email which will be used to send the withdrawn money to.
-# Tracks the transaction type along with amount to be later disaplyed on the dashboard screen a log of transactions. 
-def wire_transfer():
-    if 'email' in session:
-        email = session['email']
-
-        if request.method == 'POST':
-            recipient = request.form.get('recipient')
-            wire_amount = int(request.form.get('amount'))
-
-            recipient_exists = check_user_exists(recipient)
-
-            if not recipient_exists:
-                return "Recipient not found. Wire transfer canceled."
-
-            current_balance = get_balance(email)
-
-            if wire_amount > current_balance:
-                return "Insufficient funds. Wire transfer canceled."
-
-            mycursor.execute("UPDATE information SET balance = balance - %s WHERE email = %s", (wire_amount, email))
-            mycursor.execute("UPDATE information SET balance = balance + %s WHERE email = %s", (wire_amount, recipient))
-            mydb.commit()
-
-            mycursor.execute("INSERT INTO transactions (user_email, transaction_type, amount) VALUES (%s, %s, %s)", (email, 'Wire Transfer', wire_amount))
-            mydb.commit()
-
-            remaining_balance = get_balance(email)
-            return redirect(url_for('wire_transfer', message="Wire transfer successful!", remaining_balance=remaining_balance))
-
-        return render_template('wire_transfer.html')
-    else:
-        return redirect(url_for('login'))
-
 
 if __name__ == "__main__":
     app.run(debug=True)
