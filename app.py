@@ -34,7 +34,7 @@ mycursor = mydb.cursor()
 # SQL formula to insert new user information, transaction information, and credit applications
 sqlFormula = "INSERT INTO information (username, email, password, salt, balance) VALUES (%s, %s, %s, %s, %s)"
 transactionFormula = "INSERT INTO transactions (user_email, transaction_type, amount) VALUES (%s, %s, %s)"
-creditcardFormula = "INSERT INTO credit_applications (username, email, password, annual_income) VALUES (%s, %s, %s, %s)"
+creditcardFormula = "INSERT INTO credit_applications (first_name, last_name, email, address, city, state, postal_code, annual_income) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
 
 # Retrieve user balance from the database.
 def get_balance(email):
@@ -242,60 +242,48 @@ def wire_transfer():
         return redirect(url_for('login'))
     
 @app.route('/credit', methods=['GET', 'POST'])
-# Hosts credit card application and handles data to be stored and determine minimum eligibility.
-def credit_card():
+def credit():
+    message = None  # Initialize message variable
+
     if request.method == 'POST':
         # Get user input for credit card application
-        username = request.form.get('username')
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
         email = request.form.get('email')
-        password = pass_check(request)
-
-        # Additional form fields for credit card application
+        address = request.form.get('address')
+        city = request.form.get('city')
+        state = request.form.get('state')
+        postal_code = request.form.get('postal_code')
         annual_income = request.form.get('annual_income')
 
         # Validate annual income (you can add more validation as needed)
         if not annual_income.isdigit():
-            return "Please enter a valid annual income."
-
-        annual_income = int(annual_income)
-
-        # Check eligibility based on annual income
-        if annual_income >= 35000:
-            # Check if the email already exists in credit_applications table
-            mycursor.execute("SELECT COUNT(*) FROM credit_applications WHERE email = %s", (email,))
-            count = mycursor.fetchone()[0]
-
-            if count > 0:
-                return "An application with this email already exists. Please use a different email."
-
-            # Check if the email already exists in the 'information' table (existing user)
-            if check_user_exists(email):
-                return "An account with this email already exists. Please use a different email."
-
-            # Validate password
-            if pass_length(password) and pass_capital(password) and pass_special(password) and pass_numerical(password):
-                # Generate salt and hash the password
-                salt = generate_salt()
-                hashed_password = hash_password(password, salt)
-
-                # Insert new user information to credentials database
-                mycursor.execute(sqlFormula, (username, email, hashed_password, salt, 0))
-                mydb.commit()
-
-                # Insert separate information into credit card database
-                mycursor.execute(creditcardFormula, (username, email, hashed_password, annual_income))
-                mydb.commit()
-
-                # Redirect to a confirmation page or dashboard
-                return redirect(url_for('dashboard', message="Credit card application submitted!"))
-            else:
-                return "Please enter a valid password."
-
+            message = "Please enter a valid annual income."
         else:
-            return "Income does not meet our criteria to be a NovaX Credit Card holder"
+            annual_income = int(annual_income)
 
-    return render_template('credit_card.html')
-            
+            # Check eligibility based on annual income
+            if annual_income >= 35000:
+                # Check if the email already exists in credit_applications table
+                mycursor.execute("SELECT COUNT(*) FROM credit_applications WHERE email = %s", (email,))
+                count = mycursor.fetchone()[0]
+
+                if count > 0:
+                    message = "An application with this email already exists. Please use a different email."
+                else:
+                    # Check if the email already exists in the 'information' table (existing user)
+                    if check_user_exists(email):
+                        message = "An account with this email already exists. Please use a different email."
+                    else:
+                        # Insert data into credit card applications table
+                        mycursor.execute(creditcardFormula, (first_name, last_name, email, address, city, state, postal_code, annual_income))
+                        mydb.commit()
+                        message = "Credit card application submitted!"
+            else:
+                message = "Income does not meet our criteria to be a NovaX Credit Card holder"
+
+    return render_template('credit.html', message=message)
+    
 @app.route('/dashboard', methods=['GET', 'POST'])
 # Allows user to choose their transaction method. This also keeps an updated display of users balance on screen. Error handling for invalid request or inputs. 
 def dashboard():
