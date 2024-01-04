@@ -136,3 +136,11 @@ footer {
     padding: 0;
     background-color: #f1f1f1; /* Set a background color if needed */
 }
+
+.flashes .error {
+    color: red;
+}
+
+.flashes .success {
+    color: green;
+}

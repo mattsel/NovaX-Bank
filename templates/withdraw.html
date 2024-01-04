@@ -21,9 +21,9 @@
     <div class="navbar">
         <ul>
             <!-- Navigation links -->
-            <li class="name"><a href="{{ url_for('login') }}">NovaX</a></li>
+            <li class="name"><a href="{{ url_for('dashboard') }}">NovaX</a></li>
             <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{url_for('credit') }}"></a>Credit Card</li>
+            <li><a href="{{url_for('credit') }}">Credit Card</a></li>
             <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
             <li><a href="{{ url_for('index') }}">Services</a></li>
             <li><a href="{{ url_for('index') }}">About Us</a></li>
@@ -47,6 +47,16 @@
             <p> Remaining Balance: ${{ remaining_balance }}</p>
         {% endif %}
     </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
 
     <!-- Withdraw Form -->
     <form method="post" action="{{ url_for('withdraw') }}">
