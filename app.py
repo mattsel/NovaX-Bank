@@ -180,7 +180,7 @@ def new_acc():
     return render_template('new_acc.html')
 
 
-@app.route('/credit', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def credit():
     message = None
 
@@ -198,7 +198,7 @@ def credit():
 
         # Validate the annual income (must be a positive integer)
         if not annual_income.isdigit():
-            message = "Please enter a valid annual income."
+            flash("Please enter a valid annual income.", 'error')
         else:
             annual_income = int(annual_income)
 
@@ -208,11 +208,11 @@ def credit():
                 count = CreditApplication.query.filter_by(email=email).count()
 
                 if count > 0:
-                    message = "An application with this email already exists. Please use a different email."
+                    flash("An application with this email already exists. Please use a different email.", 'error')
                 else:
                     # Check if a user with the same email already exists
                     if check_user_exists(email):
-                        message = "An account with this email already exists. Please use a different email."
+                        flash("An account with this email already exists. Please use a different email.", 'error')
                     else:
                         # Create and commit the credit application to the database
                         credit_application = CreditApplication(
@@ -227,12 +227,12 @@ def credit():
                         )
                         db.session.add(credit_application)
                         db.session.commit()
-                        message = "Credit card application submitted!"
+                        flash("Credit card application submitted!", 'success')
             else:
-                message = "Income does not meet our criteria to be a NovaX Credit Card holder"
+                flash("Income does not meet our criteria to be a NovaX Credit Card holder", 'error')
 
-    # Render the credit template with the appropriate message
-    return render_template('credit.html', message=message)
+    # Render the credit template with the appropriate messages
+    return render_template('index.html')
 
 
 @app.route('/deposit', methods=['GET', 'POST'])
@@ -255,7 +255,7 @@ def deposit():
                 # Perform the deposit by updating the user's balance and recording the transaction
                 user.balance += deposit_amount
                 db.session.commit()
-
+ 
                 transaction = Transaction(user_email=email, transaction_type='Deposit', amount=deposit_amount)
                 db.session.add(transaction)
                 db.session.commit()
