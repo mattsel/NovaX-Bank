@@ -15,13 +15,20 @@ $(document).ready(function () {
     function handleVideoPlayback() {
         var videoSection = $('#bankingProject .video-container');
 
-        // Check if the video section is in the viewport
-        if (isElementInViewport(videoSection[0])) {
-            // Play the video if it's in the viewport
-            videoSection.find('video')[0].play();
-        } else {
-            // Pause the video if it's not in the viewport
-            videoSection.find('video')[0].pause();
+        // Check if the video section is in the DOM
+        if (videoSection.length > 0) {
+            // Check if the video element is in the DOM
+            var videoElement = videoSection.find('video');
+            if (videoElement.length > 0) {
+                // Check if the video section is in the viewport
+                if (isElementInViewport(videoSection[0])) {
+                    // Play the video if it's in the viewport
+                    videoElement[0].play();
+                } else {
+                    // Pause the video if it's not in the viewport
+                    videoElement[0].pause();
+                }
+            }
         }
     }
 
