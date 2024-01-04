@@ -3,52 +3,13 @@ $(document).ready(function () {
     $('a[href^="#"]').on('click', function (e) {
         e.preventDefault();
 
-        const target = $(this.getAttribute('href'));
+        const target = $($(this).prop('hash'));
+        const navbarHeight = $('.navbar').outerHeight();
+
         if (target.length) {
             $('html, body').stop().animate({
-                scrollTop: target.offset().top - $('.navbar').height()
+                scrollTop: target.offset().top - navbarHeight
             }, 500);
         }
     });
-
-    // Function to handle video playback based on scroll position
-    function handleVideoPlayback() {
-        var videoSection = $('#bankingProject .video-container');
-
-        // Check if the video section is in the DOM
-        if (videoSection.length > 0) {
-            // Check if the video element is in the DOM
-            var videoElement = videoSection.find('video');
-            if (videoElement.length > 0) {
-                // Check if the video section is in the viewport
-                if (isElementInViewport(videoSection[0])) {
-                    // Play the video if it's in the viewport
-                    videoElement[0].play();
-                } else {
-                    // Pause the video if it's not in the viewport
-                    videoElement[0].pause();
-                }
-            }
-        }
-    }
-
-    // Function to check if an element is in the viewport
-    function isElementInViewport(el) {
-        var rect = el.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-
-    // Event listener for scroll events
-    $(window).scroll(function () {
-        // Call the function to handle video playback on scroll
-        handleVideoPlayback();
-    });
-
-    // Initial check for video playback on page load
-    handleVideoPlayback();
 });
