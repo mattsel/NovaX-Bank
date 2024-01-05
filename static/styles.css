@@ -216,15 +216,7 @@ ul li a:hover {
     margin-top: -120px;
     margin-bottom: 80px;
   }
-  .credit-animation {
-    width: 30%;
-    height: 55%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 175px;
-  }
+
 footer {
   position: fixed;
   bottom: 0;
@@ -240,6 +232,7 @@ footer {
   text-align: center;
   margin-top: -25px;
 }
+
 button {
   background-color: #3498db; 
   color: #fff; 
@@ -255,6 +248,7 @@ button {
 button:hover {
   background-color: #297fb9ac; 
 }
+
 .credit-header {
   text-align: center;
   margin-bottom: -250px;
@@ -262,10 +256,19 @@ button:hover {
   font-weight: 400;
 }
 
-canvas {
-  display: block;
-  border: none;
+.credit-animation {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  position: relative;
 }
+
+#credit-player {
+  width: 1100px;
+}
+
 .credit-text {
   text-align: center;
   margin-top: -70px;
@@ -273,6 +276,7 @@ canvas {
   font-size: 40px;
   font-weight: 600;
 }
+
 .projects-container {
   display: flex;
   height: 100vh;
@@ -285,7 +289,7 @@ canvas {
 
 .project-box p {
   margin: 20px;
-  font-size: 16px;
+  font-size: 18px;
   color: black;
   line-height: 20px;
 }
@@ -305,6 +309,7 @@ form {
   display: flex;
   flex-direction: column;
 }
+
 label {
   margin-bottom: 5px;
   color: black

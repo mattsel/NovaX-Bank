@@ -121,14 +121,13 @@
             </div>
         </div>
     </div>
-         <!-- Credit Card Animation -->
-        <div class="credit-header">
-            <p>NovaX Credit Card</p>
-        </div>
-
+        <!--Credit Card Animation-->
         <div class="credit-animation">
-            <a id="box2"></a>
-            <canvas id="canvas3d"></canvas>
+            <video id="credit-player" loop muted>
+
+                <source src="../static/images/credit-card.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
 
         <!-- Credit Card Description Container-->
@@ -249,25 +248,9 @@
         <p>This website is created for educational purposes. &copy; 2024 NovaX Bank. All rights reserved.</p>
     </footer>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
 <!-- External JavaScript -->
 <script src="../static/main.js"></script>
 
-<!-- Credit Card Animation Scripts -->
-<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
-<script type="importmap">
-    {
-        "imports": {
-            "@splinetool/runtime": "https://unpkg.com/@splinetool/runtime@1.0.17/build/runtime.js"
-        }
-    }
-</script>
-<script type="module" src="../static/credit-animation.js"></script>
-
-<!-- Video Player Script -->
-<script>
-    // Your video player script here
 </script>    
 <!-- Video Player Script -->
 <script>
@@ -313,5 +296,35 @@
     
     observer.observe(videoSection);
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var video = document.getElementById('credit-player');
+        
+        var options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3
+        };
+
+        var observer = new IntersectionObserver(callback, options);
+
+        function callback(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (video.paused) {
+                        video.play();
+                    }
+                } else {
+                    if (!video.paused) {
+                        video.pause();
+                    }
+                }
+            });
+        }
+
+        observer.observe(video);
+    });
+</script>
+
 </body>
 </html>
