@@ -210,25 +210,12 @@ ul li a:hover {
   width: 60px;
 }
 
-/* Video Player Styles */
-@media only screen and (min-width: 1602px) {
-  #video-player {
-    width: 750px;
-    margin-left: 620px;
-    margin-top: -120px;
-    margin-bottom: 80px;
-  }
-}
-@media only screen and (max-width: 1601px) {
   #video-player {
     width: 55%;
     margin-left: 600px;
     margin-top: -120px;
     margin-bottom: 80px;
   }
-}
-
-@media only screen and (min-width: 1602px) {
   .credit-animation {
     width: 30%;
     height: 55%;
@@ -236,20 +223,8 @@ ul li a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 175px;
   }
-}
-@media only screen and (max-width: 1601px) {
-  .credit-animation {
-    width: 30%;
-    height: 55%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 200px;
-  }
-}
-
 footer {
   position: fixed;
   bottom: 0;
