@@ -255,24 +255,6 @@ button {
 button:hover {
   background-color: #297fb9ac; 
 }
-.credit-header {
-  text-align: center;
-  margin-bottom: -250px;
-  font-size: 30px;
-  font-weight: 400;
-}
-
-canvas {
-  display: block;
-  border: none;
-}
-.credit-text {
-  text-align: center;
-  margin-top: -70px;
-  font-size: 20px;
-  font-size: 40px;
-  font-weight: 600;
-}
 .projects-container {
   display: flex;
   height: 100vh;
