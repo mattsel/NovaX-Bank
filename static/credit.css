@@ -1,0 +1,151 @@
+/* Resetting default styles and setting font */
+body, html {
+    height: 100%;
+    font-family: 'League Spartan', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    overflow: auto;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    position: fixed;
+    top: 0;
+    background-color: rgb(175, 105, 255);
+    z-index: 1000;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  ul li {
+    margin-right: 15px;
+    color: white;
+  }
+  
+  ul li.name {
+    margin-right: auto;
+    padding-left: 15px;
+    letter-spacing: 3px;
+    font-size: 18px;
+  }
+  
+  ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    display: inline-block;
+  }
+  
+  ul li a:hover {
+    text-decoration: underline;
+    color: yellow;
+  }
+  
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    background-color: #f1f1f1;
+  }
+  canvas {
+    display: block;
+  }
+  .credit-animation {
+    width: 100%;
+    height: 55%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .credit-text {
+    text-align: center;
+    margin-top: -70px;
+    font-size: 20px;
+    font-size: 40px;
+    font-weight: 600;
+  }
+  .projects-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .project-box {
+    flex: 1;
+    margin: 10px;
+  }
+  
+  .project-box p {
+    margin: 20px;
+    font-size: 16px;
+    color: black;
+    line-height: 20px;
+  }
+  
+  form {
+    width: 100%;
+    text-align: initial;
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .form-group {
+    flex: 0 0 45%; 
+    margin-right: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    color: black
+  }
+  
+  input {
+    padding: 8px;
+  }
+  
+  input[type="submit"],
+  button {
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+    background-color: #3498db; 
+    margin-bottom: 50px;
+    padding: 10px;
+  }
+  
+  input[type="submit"]:hover,
+  button:hover {
+    background-color: #297fb9ac;
+  }
+  #box2 {
+    text-align: center;
+  }
+.flash-message.error {
+    color: #ff3333;
+}
+
+.flash-message.success {
+    color: #33cc33;
+}
+
+  

@@ -19,6 +19,9 @@
     <!-- Link to External Stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="../static/styles.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../static/main.js"></script>
 </head>
 
 <body>
@@ -30,7 +33,7 @@
             <li><a href="{{ url_for('login') }}" class="login">Login</a></li>
             <li><a href="#home">Home</a></li>
             <li><a href="#projects">Services</a></li>
-            <li><a href="#canvas3d">Credit Card</a></li>
+            <li><a href="{{ url_for('credit') }}">Credit Card </a></li>
             <li><a href="#about">About Us</a></li>
         </ul>
     </div>
@@ -81,7 +84,7 @@
                         elevating the overall financial experience for its cardholders. Positioned as a trusted partner, NovaX Credit Card aims to be at the forefront of the
                          industry, providing a reliable and rewarding credit card solution for individuals seeking financial empowerment.
                         </p>
-                    <div class="button-project"><a href="#canvas3d"><button>Try Me</button></a></div>
+                        <div class="button-project"><a href="{{ url_for('credit') }}"><button>Try Me</button></a></div>
                 </div>
 
                 <!-- Wire Transfer Project -->
@@ -91,7 +94,8 @@
                     <p>Wire transfer services, a pivotal component of modern banking, play a vital role in facilitating seamless 
                         financial transactions across the globe. These services offer individuals and businesses a secure and efficient 
                         method for transferring funds domestically and internationally. The efficiency and speed of wire transfers contribute 
-                        to the agility of businesses, enabling them to navigate the complexities of the global marketplace.<br><br>
+                        to the agility of businesses, enabling them to navigate the complexities of the global marketplace. The ability to transfer money
+                        instantly in this day and age is crucial with the evolution of technology.<br><br>
                         In the realm of personal finance, wire transfers provide a swift and reliable way to send money to family members, 
                         make investments, or handle urgent financial matters. This expeditious mode of transaction ensures that individuals 
                         can meet their financial obligations promptly, irrespective of geographical boundaries. Additionally, wire transfers 
@@ -121,90 +125,13 @@
             </div>
         </div>
     </div>
-        <!--Credit Card Animation-->
-        <div class="credit-animation">
-            <video id="credit-player" loop muted>
-
-                <source src="../static/images/credit-card.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-
-        <!-- Credit Card Description Container-->
-        <div class="projects-container">
-      <div class="project-box" id="box1">
-        <p>
-            Introducing NovaX Credit Card – Your Passport to Seamless Transactions!<br><br>
-            Elevate your financial experience with the NovaX Credit Card, designed to 
-            empower your lifestyle. Enjoy the freedom to make secure and convenient transactions, 
-            whether it's shopping for the latest trends, dining at your favorite restaurants, or 
-            booking your dream getaway.<br><br>NovaX Credit Card offers a range of exclusive benefits, 
-            including competitive interest rates, rewards programs, and unparalleled customer service. 
-            With cutting-edge security features, you can shop with confidence, knowing that your transactions 
-            are protected.<br><br>Experience the next level of financial flexibility and join NovaX – where innovation meets convenience. 
-            Apply for your NovaX Credit Card today and embark on a journey of limitless possibilities! Fill out this application for endless benefits from financial stability</p>
-      </div>
-        <!-- Form for Credit-->
-    <div class="project-box" id="box2">
-        <div class="flash-messages">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% for category, message in messages %}
-                    <div class="flash-message {{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endwith %}
-        </div>
-        <form method="post" action="{{ url_for('index') }}#box2">
-            <div class="form-group">
-                <label for="first_name">First Name:</label>
-                <input type="text" name="first_name" required>
-            </div>
-        
-            <div class="form-group">
-                <label for="last_name">Last Name:</label>
-                <input type="text" name="last_name" required>
-            </div>
-        
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" name="email" required>
-            </div>
-        
-            <div class="form-group">
-                <label for="address">Address:</label>
-                <input type="text" name="address" required>
-            </div>
-        
-            <div class="form-group">
-                <label for="city">City:</label>
-                <input type="text" name="city" required>
-            </div>
-        
-            <div class="form-group">
-                <label for="state">State:</label>
-                <input type="text" name="state" required>
-            </div>
-        
-            <div class="form-group">
-                <label for="postal_code">Postal Code:</label>
-                <input type="text" name="postal_code" required>
-            </div>
-        
-            <div class="form-group">
-                <label for="annual_income">Annual Income:</label>
-                <input type="number" name="annual_income" required>
-            </div>
-        
-            <!-- Submit Button -->
-            <button type="submit">Submit Application</button>
-        </form>
-    </div>
         <!-- About Us Section -->
     <div class="section">
         <div class="photo-support" id="about">
             <!-- Photo and Text Section -->
             <div class="photo">
                 <p>About Us</p>
-                <img src="../static/images/temp_profile.PNG" alt="headshot">
+                <img src="../static/images/headshot.PNG" alt="headshot">
             </div>
 
             <div class="photo-text">
@@ -241,38 +168,40 @@
                 <br>
             </div>
         </div>
-    </div> <!-- Closing tag for the "About Us" section -->
+    </div>
 
     <!-- Footer -->
     <footer>
         <p>This website is created for educational purposes. &copy; 2024 NovaX Bank. All rights reserved.</p>
     </footer>
 
-<!-- External JavaScript -->
-<script src="../static/main.js"></script>
-
-</script>    
-<!-- Video Player Script -->
+<!-- Video Player Script for Home Hero Section -->
 <script>
+    // Getting the video element and the section where it is located
     var video = document.getElementById('video-player');
     var videoSection = document.getElementById('video-section');
 
+    // Intersection Observer options
     var options = {
         root: null,
         rootMargin: '0px',
         threshold: 0.3 
     };
 
+    // Creating an Intersection Observer
     var observer = new IntersectionObserver(callback, options);
 
+    // Callback function for the Intersection Observer
     function callback(entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // Play the video when it becomes visible
                 if (video.paused) {
                     video.play();
-                    video.playbackRate = 1.5; 
+                    video.playbackRate = 1.5; // Adjusting playback speed
                 }
             } else {
+                // Pause the video when it goes out of view and save the current time
                 if (!video.paused) {
                     video.pause();
                     saveCurrentTime();
@@ -281,40 +210,49 @@
         });
     }
 
+    // Save the current time of the video to localStorage
     function saveCurrentTime() {
-        
         localStorage.setItem('videoCurrentTime', video.currentTime);
     }
 
+    // Retrieve the saved current time from localStorage
     function retrieveCurrentTime() {
-       
         var currentTime = localStorage.getItem('videoCurrentTime');
         return currentTime ? parseFloat(currentTime) : 0;
     }
 
+    // Set the video's current time to the retrieved time
     video.currentTime = retrieveCurrentTime(); 
     
+    // Start observing the video section
     observer.observe(videoSection);
 </script>
+
+<!-- Video Player Script for Credit Card Animation Section -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var video = document.getElementById('credit-player');
         
+        // Intersection Observer options
         var options = {
             root: null,
             rootMargin: '0px',
             threshold: 0.3
         };
 
+        // Creating an Intersection Observer
         var observer = new IntersectionObserver(callback, options);
 
+        // Callback function for the Intersection Observer
         function callback(entries, observer) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    // Play the video when it becomes visible
                     if (video.paused) {
                         video.play();
                     }
                 } else {
+                    // Pause the video when it goes out of view
                     if (!video.paused) {
                         video.pause();
                     }
@@ -322,9 +260,11 @@
             });
         }
 
+        // Start observing the video
         observer.observe(video);
     });
 </script>
+
 
 </body>
 </html>

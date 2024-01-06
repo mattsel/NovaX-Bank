@@ -180,7 +180,7 @@ def new_acc():
     return render_template('new_acc.html')
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/credit', methods=['GET', 'POST'])
 def credit():
     message = None
 
@@ -232,7 +232,7 @@ def credit():
                 flash("Income does not meet our criteria to be a NovaX Credit Card holder", 'error')
 
     # Render the credit template with the appropriate messages
-    return render_template('index.html')
+    return render_template('credit.html')
 
 
 @app.route('/deposit', methods=['GET', 'POST'])
