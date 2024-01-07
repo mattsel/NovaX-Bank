@@ -9,11 +9,11 @@
 
 PostgreSQL is used to store data in three separate tables: User, CreditApplication, and Transactions. Each of these tables stores the information that is provided by the user from forms and other inputs throughout the site i.e. deposits, withdraws, and transfers. 
 
-An example of the unit testing done to ensure these work properly by inserting a new user and asserting that the database contains the newly added attributes.
-
-![Screenshot 2024-01-07 121041](<Screenshot 2024-01-07 1210416.png>)
-
 ![Screenshot 2024-01-06 201324](https://github.com/mattsel/NovaX-Bank/assets/141775337/a4073228-6ef1-453e-bd36-fd9af7b9e18a)
+
+An example of the unit testing done to ensure the database functions work properly is by inserting a new user and asserting that the database contains the newly added attributes.
+
+<img width="563" alt="Screenshot 2024-01-07 at 12 15 52 PM" src="https://github.com/mattsel/NovaX-Bank/assets/141775337/09e118e7-99d9-4daa-80e8-4b2681c665c7">
 
 The information entered into the tables is done using a formula that will be called at the end of the function to store the proper values for each of the columns. 
 
