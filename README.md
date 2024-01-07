@@ -5,7 +5,7 @@
 
 **Languages: **Python, PostgreSQL, HTML, CSS, JS, and Flask framework
 
-**Libraries: **Hashlib (Hash & salting user passwords), Flask_Sqlalchemy (Connect, create, and store user information to tables), and Dotenv (Securely connect to database through git ignored .env file).
+**Libraries: **Unittest (Unit test the functions in the code to ensure they are working properly) Hashlib (Hash & salting user passwords), Flask_Sqlalchemy (Connect, create, and store user information to tables), and Dotenv (Securely connect to database through git ignored .env file).
 
 PostgreSQL is used to store data in three separate tables: User, CreditApplication, and Transactions. Each of these tables stores the information that is provided by the user from forms and other inputs throughout the site i.e. deposits, withdraws, and transfers. 
 
