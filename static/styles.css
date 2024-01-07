@@ -125,6 +125,11 @@ ul li a:hover {
   color: black;
 }
 
+#wire_button {
+  margin-top: -31px;
+}
+
+
 /* Photo Styles */
 .photo {
   text-align: center;
@@ -183,11 +188,6 @@ ul li a:hover {
 }
 
 /* Image Styles */
-.link-item img {
-  height: 60px;
-  width: 60px;
-}
-
   #video-player {
     width: 55%;
     margin-left: 600px;
