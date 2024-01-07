@@ -57,10 +57,14 @@
     <p4><b>Email:</b> test_user@gmail.com <b>Password:</b> Test_user123</p4>
 
     <!-- Display Error Message Section -->
-    {% if error_message %}
-        <p style="color: red;">{{ error_message }}</p>
-    {% endif %}
-
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
      <!-- Footer -->
      <footer>
         <p>This website is created for educational purposes. &copy; 2024 NovaX Bank. All rights reserved.</p>

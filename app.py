@@ -74,7 +74,7 @@ def pass_check(request):
 
 # Check if the password meets the minimum length requirement.
 def pass_length(password):
-    return len(password) > 6
+    return len(password) >= 6 and ' ' not in password
 
 # Check if the password contains at least one uppercase letter.
 def pass_capital(password):
@@ -133,10 +133,10 @@ def login():
                 return redirect(url_for('dashboard'))
             else:
                 # Display an error message for incorrect password
-                error_message = "Incorrect password. Please try again."
+                 flash("Incorrect password. Please try again.", 'error')
 
     # Render the login template with the appropriate error message
-    return render_template('login.html', error_message=error_message)
+    return render_template('login.html')
 
 @app.route('/new_acc', methods=['GET', 'POST'])
 def new_acc():
