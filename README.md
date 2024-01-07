@@ -5,9 +5,13 @@
 
 **Languages: **Python, PostgreSQL, HTML, CSS, JS, and Flask framework
 
-**Libraries: **Unittest (Unit test the functions in the code to ensure they are working properly) Hashlib (Hash & salting user passwords), Flask_Sqlalchemy (Connect, create, and store user information to tables), and Dotenv (Securely connect to database through git ignored .env file).
+**Libraries: **Unittest, Hashlib, Flask_Sqlalchemy, Dotenv, Flask, 
 
 PostgreSQL is used to store data in three separate tables: User, CreditApplication, and Transactions. Each of these tables stores the information that is provided by the user from forms and other inputs throughout the site i.e. deposits, withdraws, and transfers. 
+
+An example of the unit testing done to ensure these work properly by inserting a new user and asserting that the database contains the newly added attributes.
+
+![Screenshot 2024-01-07 121041](<Screenshot 2024-01-07 1210416.png>)
 
 ![Screenshot 2024-01-06 201324](https://github.com/mattsel/NovaX-Bank/assets/141775337/a4073228-6ef1-453e-bd36-fd9af7b9e18a)
 
