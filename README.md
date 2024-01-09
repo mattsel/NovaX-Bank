@@ -15,7 +15,7 @@
 
 <img width="563" alt="Screenshot 2024-01-07 at 12 15 52 PM" src="https://github.com/mattsel/NovaX-Bank/assets/141775337/09e118e7-99d9-4daa-80e8-4b2681c665c7">
 
-The information entered into the tables is done using a formula that will be called at the end of the function to store the proper values for each of the columns. 
+**Database Info Formula:** The information entered into the tables is done using a formula that will be called at the end of the function to store the proper values for each of the columns. 
 
 ![Screenshot 2024-01-06 201502](https://github.com/mattsel/NovaX-Bank/assets/141775337/2358fb60-e668-47f4-b89e-25a36cb5c6d2)
 
