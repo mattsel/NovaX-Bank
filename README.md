@@ -1,11 +1,11 @@
 # NovaX Bank
-**TEST THIS PROGRAM HERE: ** [www.novax.mattsel.com](https://www.novax.mattsel.com)
+**TEST THIS PROGRAM HERE:** [www.novax.mattsel.com](https://www.novax.mattsel.com)
 
 **Overview: **The goal of this project was to exercise my skills in a full to create a banking app. This application initially presents a tastefully designed landing page that describes the company, NovaX. The user then can choose to log in, create an account, or sign up for a NovaX credit card. All of these credentials are stored in a database using PostgreSQL with security in mind by salting passwords to prevent cyber attacks. After the user either logs in or creates an account, they are presented with the dashboard that shows the user's previous transaction history and the options to create a deposit, withdraw, or wire transfer. All of these transactions are stored in the database to log the information back into the dashboard for the simplicity of the user to see previous transactions. This application and database were deployed using Render.
 
-**Languages: **Python, PostgreSQL, HTML, CSS, JS, and Flask framework
+**Languages:** Python, PostgreSQL, HTML, CSS, JS, and Flask framework
 
-**Libraries: **Unittest, Hashlib, Flask_Sqlalchemy, Dotenv, Flask, 
+**Libraries:** Unittest, Hashlib, Flask_Sqlalchemy, Dotenv, Flask, 
 
 PostgreSQL is used to store data in three separate tables: User, CreditApplication, and Transactions. Each of these tables stores the information that is provided by the user from forms and other inputs throughout the site i.e. deposits, withdraws, and transfers. 
 
