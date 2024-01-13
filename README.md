@@ -1,7 +1,7 @@
 # NovaX Bank
 **TEST THIS PROGRAM HERE:** [www.novax.mattsel.com](https://www.novax.mattsel.com)
 
-**Overview:** The goal of this project was to exercise my skills in a full stack CRUD API banking application. In this project most of the styling was done with majority HTML, CSS, and slight JS for animations. The majority of the backend logic was done using Python and Flask while the database is configured with PostgreSQL. Throughout this project some of the key features in this app is that it includes login authentication, password salting, dynamic routing, and the ability to display user's transaction history logs via the dashboard. 
+**Overview:** The goal of this project was to exercise my skills in a full-stack CRUD API banking application. In this project, most of the styling was done with the majority of HTML, CSS, and JS for animations. The majority of the backend logic was done using Python and Flask while the database is configured with PostgreSQL. Throughout this project, some of the key features in this app is that it includes login authentication, password salting, dynamic routing, and the ability to display user's transaction history logs via the dashboard. This application is also deployed to a cloud-based service, Render, to practice my ability to work with cloud services and gain more experience in the realm of deploying applications. 
 
 **Languages:** Python, PostgreSQL, HTML, CSS, JS, and Flask framework
 
