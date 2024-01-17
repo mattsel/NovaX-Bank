@@ -43,76 +43,76 @@
     <video id="autoplayVideo" width="900vw" height="1900vw" loop muted autoplay>
         <source src="../static/images/credit-card.mp4" type="video/mp4">
         Your browser does not support the video tag.
-      </video>
+    </video>
 </div>
 
 <!-- Credit Card Description Container-->
 <div class="projects-container">
-<div class="project-box" id="box1">
-<p>
-    Introducing NovaX Credit Card – Your Passport to Seamless Transactions!<br><br>
-    Elevate your financial experience with the NovaX Credit Card, designed to 
-    empower your lifestyle. Enjoy the freedom to make secure and convenient transactions, 
-    whether it's shopping for the latest trends, dining at your favorite restaurants, or 
-    booking your dream getaway.<br><br>NovaX Credit Card offers a range of exclusive benefits, 
-    including competitive interest rates, rewards programs, and unparalleled customer service. 
-    With cutting-edge security features, you can shop with confidence, knowing that your transactions 
-    are protected.<br><br>Experience the next level of financial flexibility and join NovaX – where innovation meets convenience. 
-    Apply for your NovaX Credit Card today and embark on a journey of limitless possibilities! Fill out this application for endless benefits from financial stability</p>
-</div>
-<!-- Form for Credit-->
-<div class="project-box" id="box2">
-<div class="flash-messages">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% for category, message in messages %}
-            <div class="flash-message {{ category }}">{{ message }}</div>
-        {% endfor %}
-    {% endwith %}
-</div>
-<form method="post" action="{{ url_for('credit') }}">
-    <div class="form-group">
-        <label for="first_name">First Name:</label>
-        <input type="text" name="first_name" required>
+    <div class="project-box" id="box1">
+    <p>
+        Introducing NovaX Credit Card – Your Passport to Seamless Transactions!<br><br>
+        Elevate your financial experience with the NovaX Credit Card, designed to 
+        empower your lifestyle. Enjoy the freedom to make secure and convenient transactions, 
+        whether it's shopping for the latest trends, dining at your favorite restaurants, or 
+        booking your dream getaway.<br><br>NovaX Credit Card offers a range of exclusive benefits, 
+        including competitive interest rates, rewards programs, and unparalleled customer service. 
+        With cutting-edge security features, you can shop with confidence, knowing that your transactions 
+        are protected.<br><br>Experience the next level of financial flexibility and join NovaX – where innovation meets convenience. 
+        Apply for your NovaX Credit Card today and embark on a journey of limitless possibilities! Fill out this application for endless benefits from financial stability</p>
     </div>
-
-    <div class="form-group">
-        <label for="last_name">Last Name:</label>
-        <input type="text" name="last_name" required>
+    <!-- Form for Credit-->
+    <div class="project-box" id="box2">
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
     </div>
+    <form method="post" action="{{ url_for('credit') }}">
+        <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" required>
+        </div>
 
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" name="email" required>
-    </div>
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" required>
+        </div>
 
-    <div class="form-group">
-        <label for="address">Address:</label>
-        <input type="text" name="address" required>
-    </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
+        </div>
 
-    <div class="form-group">
-        <label for="city">City:</label>
-        <input type="text" name="city" required>
-    </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" name="address" required>
+        </div>
 
-    <div class="form-group">
-        <label for="state">State:</label>
-        <input type="text" name="state" required>
-    </div>
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" name="city" required>
+        </div>
 
-    <div class="form-group">
-        <label for="postal_code">Postal Code:</label>
-        <input type="text" name="postal_code" required>
-    </div>
+        <div class="form-group">
+            <label for="state">State:</label>
+            <input type="text" name="state" required>
+        </div>
 
-    <div class="form-group">
-        <label for="annual_income">Annual Income:</label>
-        <input type="number" name="annual_income" required>
-    </div>
+        <div class="form-group">
+            <label for="postal_code">Postal Code:</label>
+            <input type="text" name="postal_code" required>
+        </div>
 
-    <!-- Submit Button -->
-    <button type="submit">Submit Application</button>
-</form>
+        <div class="form-group">
+            <label for="annual_income">Annual Income:</label>
+            <input type="number" name="annual_income" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit Application</button>
+    </form>
 </div>
     <!-- Footer -->
     <footer>

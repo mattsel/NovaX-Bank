@@ -59,9 +59,7 @@ body, html {
     text-align: center;
     padding: 0;
     background-color: #f1f1f1;
-  }
-  canvas {
-    display: block;
+    z-index: 3;
   }
   .credit-animation {
     width: 100%;
@@ -80,13 +78,18 @@ body, html {
   }
   .projects-container {
     display: flex;
-    height: 100vh;
-  }
+    height: 90vh; 
+    position: relative; 
+    max-height: 100vh;
+    overflow: auto;
+}
   
-  .project-box {
-    flex: 1;
-    margin: 10px;
-  }
+.project-box {
+  flex: 1;
+  margin: 10px;
+  position: relative; 
+  z-index: 2; 
+}
   
   .project-box p {
     margin: 20px;
@@ -122,15 +125,15 @@ body, html {
   
   input[type="submit"],
   button {
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 30px;
-    background-color: #3498db; 
-    margin-bottom: 50px;
-    padding: 10px;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 30px;
+      background-color: #3498db; 
+      margin-bottom: 10px; 
+      padding: 10px;
   }
   
   input[type="submit"]:hover,
