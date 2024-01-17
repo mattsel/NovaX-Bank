@@ -23,15 +23,6 @@
      <!-- Imports for credit card animation scripts-->
 
      <script type="module" src="../static/credit-animation.js"></script>
-     <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
-    <script type="importmap">
-        {
-        "imports": {
-            "@splinetool/runtime": "https://unpkg.com/@splinetool/runtime@1.0.18/build/runtime.js"
-        }
-        }
-    </script>
-    <script type="module" src="../static/credit-animation.js"></script>
 </head>
 
 <body>
@@ -49,7 +40,10 @@
 
 <!--Credit Card Animation-->
 <div class="credit-animation" id="credit-nav">
-    <canvas id="canvas3d"></canvas>
+    <video id="autoplayVideo" width="900vw" height="1900vw" loop muted autoplay>
+        <source src="../static/images/credit-card.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
 </div>
 
 <!-- Credit Card Description Container-->
@@ -125,5 +119,6 @@
         <p>This website is created for educational purposes. &copy; 2024 NovaX Bank. All rights reserved.</p>
     </footer>
 </div>
+
 </body>
 </html>
