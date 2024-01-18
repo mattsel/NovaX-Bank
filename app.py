@@ -151,7 +151,7 @@ def new_acc():
         existing_user = User.query.filter_by(email=email).first()
 
         if existing_user:
-            return "An account with this email already exists. Please use a different email."
+           flash("An application with this email already exists. Please use a different email.", 'error')
 
         # Validate the password based on specified criteria
         if (
@@ -174,7 +174,7 @@ def new_acc():
             return redirect(url_for('dashboard'))
         else:
             # Return an error message if the password criteria are not met
-            return "Please enter a valid password that includes the following:\n- Capital letter\n- Special Character\n- 6 Characters\n- Numerical Value"
+            flash("Please ensure your password matches and includes the following: 6 Characters, Captial, Special Character, and Numerical Value ", 'error')
 
     # Render the new account template for GET requests
     return render_template('new_acc.html')
@@ -246,7 +246,8 @@ def deposit():
         # Check if the request method is POST
         if request.method == 'POST':
             # Get deposit amount from the form
-            deposit_amount = int(request.form.get('amount'))
+            deposit_amount = float(request.form.get('amount'))
+
 
             # Validate the deposit amount
             if deposit_amount <= 0:
@@ -282,7 +283,7 @@ def withdraw():
         # Check if the request method is POST
         if request.method == 'POST':
             # Get withdrawal amount from the form
-            withdraw_amount = int(request.form.get('amount'))
+            withdraw_amount = float((request.form.get('amount')))
 
             # Validate the withdrawal amount
             if withdraw_amount <= 0:
@@ -321,7 +322,7 @@ def wire_transfer():
         if request.method == 'POST':
             # Get recipient and wire amount from the form
             recipient = request.form.get('recipient')
-            wire_amount = int(request.form.get('amount'))
+            wire_amount = round(float((request.form.get('amount'))),2)
 
             # Check if the recipient exists in the system
             recipient_exists = check_user_exists(recipient)

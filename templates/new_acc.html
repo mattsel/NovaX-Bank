@@ -41,6 +41,16 @@
 
     <!-- New User Registration Form Section -->
     <h1 class="newacc-heading">Create a New Account</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     <form method="post" action="{{ url_for('new_acc') }}">
         <!-- Username Input -->
         <label for="username">Username:</label>

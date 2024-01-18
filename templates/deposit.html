@@ -69,7 +69,7 @@
     <!-- Deposit Form -->
     <form method="post" action="{{ url_for('deposit') }}">
         <label for="amount">Amount:</label>
-        <input type="number" name="amount" required>
+        <input type="text" name="amount" pattern="^\d+(\.\d{1,2})?$" title="Please enter a valid number with up to two decimal places" required>
         <button type="submit">Deposit</button>
     </form>
 

@@ -65,7 +65,7 @@
         <label for="recipient">Recipient Email:</label>
         <input type="text" name="recipient" required>
         <label for="amount">Amount:</label>
-        <input type="number" name="amount" required>
+        <input type="text" name="amount" pattern="^\d+(\.\d{1,2})?$" title="Please enter a valid number with up to two decimal places" required>
         <button type="submit">Wire Transfer</button>
     </form>
     
