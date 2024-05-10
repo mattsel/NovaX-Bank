@@ -7,6 +7,7 @@ body, html {
   padding: 0;
   background-color: rgb(255, 255, 255);
   color: black;
+  overflow-x: hidden;
 }
 
 /* Navbar Styles */
@@ -88,8 +89,9 @@ ul li a:hover {
 }
 
 .projects-container h2 {
-  text-decoration: underline;
-  font-size: 27px;
+  font-family: 'BubbleFont', sans-serif;
+  font-size: 36px;
+  color: black;
 }
 
 /* Project Styles */
@@ -129,6 +131,9 @@ ul li a:hover {
   margin-top: -31px;
 }
 
+#transaction_button {
+  margin-top: 25px;
+}
 
 /* Photo Styles */
 .photo {
@@ -158,6 +163,7 @@ ul li a:hover {
   font-size: 30px;
   font-weight: 400;
   margin-top: 200px;
+  
 }
 
 .photo img {
@@ -189,10 +195,9 @@ ul li a:hover {
 
 /* Image Styles */
   #video-player {
-    width: 55%;
-    margin-left: 600px;
-    margin-top: -120px;
-    margin-bottom: 80px;
+    width: 48%;
+    margin-left: 950px;
+    margin-top: -200px;
   }
 
 footer {

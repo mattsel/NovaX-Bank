@@ -1,20 +1,17 @@
-$(document).ready(function () {
-    // Add smooth scrolling to all links
-    $("a").on('click', function (event) {
-        if (this.hash !== "") {
-            // Prevent default anchor click behavior
-            event.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.navbar a');
 
-            // Store hash
-            var hash = this.hash;
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default anchor behavior
 
-            // Using jQuery's animate() method to add smooth page scroll
-            $('html, body').animate({
-                scrollTop: $(hash).offset().top
-            }, 800, function () {
-                // Add hash (#) to URL when done scrolling (default click behavior)
-                window.location.hash = hash;
-            });
-        }
+            const targetId = this.getAttribute('href').substring(1); // Get target section ID
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                // Scroll to the target section with an offset
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest', scrollMarginTop: 100 });
+            }
+        });
     });
 });
