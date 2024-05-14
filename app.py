@@ -256,7 +256,7 @@ def deposit():
                 flash("Invalid deposit amount. Please enter a positive value.", 'error')
             else:
                 # Perform the deposit by updating the user's balance and recording the transaction
-                user.balance += deposit_amount
+                user.balance = round(user.balance + deposit_amount, 2)
                 db.session.commit()
  
                 transaction = Transaction(user_email=email, transaction_type='Deposit', amount=deposit_amount)
@@ -266,7 +266,7 @@ def deposit():
                 flash("Deposit successful!", 'success')
 
         # Get the remaining balance after deposit
-        remaining_balance = user.balance
+        remaining_balance = round(user.balance, 2)
 
         # Render the deposit template with user information and remaining balance
         return render_template('deposit.html', user=user, remaining_balance=remaining_balance)
@@ -294,7 +294,7 @@ def withdraw():
                 flash("Insufficient funds. Withdrawal canceled.", 'error')
             else:
                 # Perform the withdrawal by updating the user's balance and recording the transaction
-                user.balance -= withdraw_amount
+                user.balance = round(user.balance - withdraw_amount, 2)
                 db.session.commit()
 
                 transaction = Transaction(user_email=email, transaction_type='Withdraw', amount=withdraw_amount)
@@ -304,7 +304,7 @@ def withdraw():
                 flash("Withdrawal successful!", 'success')
 
         # Get the remaining balance after withdrawal
-        remaining_balance = user.balance
+        remaining_balance = round(user.balance, 2)
 
         # Render the withdrawal template with user information and remaining balance
         return render_template('withdraw.html', user=user, remaining_balance=remaining_balance)
@@ -339,9 +339,9 @@ def wire_transfer():
                     flash("Insufficient funds. Wire transfer canceled.", 'error')
                 else:
                     # Perform the wire transfer by updating balances and recording the transaction
-                    user.balance -= wire_amount
+                    user.balance = round(user.balance - wire_amount, 2)
                     recipient_user = User.query.filter_by(email=recipient).first()
-                    recipient_user.balance += wire_amount
+                    recipient_user.balance = round(recipient_user.balance + wire_amount, 2)
                     db.session.commit()
 
                     # Record the wire transfer transaction in the database
@@ -352,7 +352,7 @@ def wire_transfer():
                     flash("Wire transfer successful!", 'success')
 
         # Get the remaining balance after wire transfer
-        remaining_balance = user.balance
+        remaining_balance = round(user.balance, 2)
 
         # Render the wire transfer template with user information and remaining balance
         return render_template('wire_transfer.html', user=user, remaining_balance=remaining_balance)
