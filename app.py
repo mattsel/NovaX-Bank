@@ -407,7 +407,7 @@ def dashboard():
                     flash("Withdrawal successful!", 'success')
 
         # Retrieve the latest 5 transactions for the user
-        transactions = Transaction.query.filter_by(user_email=email).order_by(Transaction.timestamp.desc()).limit(5).all()
+        transactions = Transaction.query.filter_by(user_email=email).order_by(Transaction.timestamp.desc()).limit(10).all()
 
         # Render the dashboard template with user information and recent transactions
         return render_template('dashboard.html', user=user, username=user.username, current_balance=user.balance, transactions=transactions)

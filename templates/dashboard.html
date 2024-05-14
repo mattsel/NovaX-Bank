@@ -42,7 +42,7 @@
         <div class="account-summary">
             <div class="account">
                 <h2>Account:</h2>
-                <p>Current Balance: ${{ current_balance | round(2) }}</p>
+                <p>Current Balance: ${{ current_balance | format('%.2f') }}</p>
             </div>
 
             <div class="account">
@@ -72,7 +72,7 @@
             <ul>
                 <!-- Display recent transactions using a loop -->
                 {% for transaction in transactions %}
-                    <li>{{ transaction.transaction_type }} - ${{ transaction.amount | round(2) }} ({{ transaction.timestamp.strftime('%Y-%m-%d %H:%M:%S') }})</li>
+                    <li>{{ transaction.transaction_type }} - ${{ transaction.amount | format('%.2f') }} ({{ transaction.timestamp.strftime('%Y-%m-%d %H:%M:%S') }})</li>
                 {% endfor %}
             </ul>
         </div>
